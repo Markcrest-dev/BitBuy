@@ -19,14 +19,23 @@ export default function LoginPage() {
     setIsLoading(true)
 
     try {
-      // TODO: Implement authentication with NextAuth
+      // TODO: Implement NextAuth signIn
+      // Import { signIn } from 'next-auth/react' and use it
+      // const result = await signIn('credentials', {
+      //   email: formData.email,
+      //   password: formData.password,
+      //   redirect: false,
+      // })
+      //
+      // if (result?.error) {
+      //   setError('Invalid email or password')
+      // } else {
+      //   router.push('/')
+      // }
+
+      // Temporary placeholder
       console.log('Login attempt:', formData)
-
-      // Placeholder - will be replaced with NextAuth signIn
-      alert('Authentication coming soon! For now, this is a placeholder.')
-
-      // After successful login, redirect to home
-      // router.push('/')
+      alert('Login functionality will be connected in Phase 5 (State Management)')
     } catch (err) {
       setError('Invalid email or password')
     } finally {

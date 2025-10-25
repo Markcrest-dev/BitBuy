@@ -34,18 +34,26 @@ export default function RegisterPage() {
     setIsLoading(true)
 
     try {
-      // TODO: Implement registration with API
-      console.log('Registration attempt:', {
-        name: formData.name,
-        email: formData.email,
-        phone: formData.phone,
+      // Call registration API
+      const response = await fetch('/api/auth/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: formData.email,
+          password: formData.password,
+          name: formData.name,
+          phone: formData.phone || undefined,
+        }),
       })
 
-      // Placeholder - will be replaced with actual API call
-      alert('Registration coming soon! For now, this is a placeholder.')
+      const data = await response.json()
 
-      // After successful registration, redirect to login
-      // router.push('/login')
+      if (response.ok) {
+        alert('Registration successful! Please login.')
+        router.push('/login')
+      } else {
+        setError(data.error || 'Registration failed')
+      }
     } catch (err) {
       setError('Registration failed. Please try again.')
     } finally {
