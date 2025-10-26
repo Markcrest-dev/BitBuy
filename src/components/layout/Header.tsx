@@ -10,16 +10,19 @@ export default function Header() {
   const getTotalItems = useCartStore((state) => state.getTotalItems)
 
   return (
-    <header className="bg-white shadow-md sticky top-0 z-50">
-      {/* Top Bar */}
-      <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white py-2">
+    <header className="bg-white shadow-lg sticky top-0 z-50">
+      {/* Top Bar - Luxury Gold/Black Theme */}
+      <div className="bg-gradient-to-r from-secondary via-primary-dark to-secondary text-white py-2.5">
         <div className="container mx-auto px-4 flex justify-between items-center text-sm">
-          <p>Free shipping on orders over $50!</p>
-          <div className="flex gap-4">
-            <Link href="/track-order" className="hover:underline">
+          <p className="flex items-center gap-2">
+            <span className="text-accent">✨</span>
+            Free shipping on orders over $50!
+          </p>
+          <div className="flex gap-6">
+            <Link href="/track-order" className="hover:text-accent transition-colors">
               Track Order
             </Link>
-            <Link href="/help" className="hover:underline">
+            <Link href="/help" className="hover:text-accent transition-colors">
               Help
             </Link>
           </div>
@@ -29,31 +32,31 @@ export default function Header() {
       {/* Main Header */}
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between gap-4">
-          {/* Logo */}
-          <Link href="/" className="text-2xl font-bold text-blue-600 flex-shrink-0">
+          {/* Logo - Luxury Gold Branding */}
+          <Link href="/" className="text-2xl font-bold bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent flex-shrink-0 hover:scale-105 transition-transform">
             ShopHub
           </Link>
 
-          {/* Search Bar */}
+          {/* Search Bar - Gold Accent */}
           <div className="hidden md:flex flex-1 max-w-2xl">
             <div className="w-full relative">
               <input
                 type="text"
                 placeholder="Search for products..."
-                className="w-full px-4 py-2 border border-gray-300 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-2.5 border-2 border-gray-200 rounded-l-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-all"
               />
-              <button className="absolute right-0 top-0 h-full px-6 bg-blue-600 text-white rounded-r-lg hover:bg-blue-700 transition">
+              <button className="absolute right-0 top-0 h-full px-6 bg-gradient-to-r from-primary to-primary-light text-white rounded-r-xl hover:from-primary-dark hover:to-primary transition-all shadow-md hover:shadow-lg">
                 <MagnifyingGlassIcon className="w-5 h-5" />
               </button>
             </div>
           </div>
 
-          {/* Action Buttons */}
+          {/* Action Buttons - Gold Theme */}
           <div className="flex items-center gap-4">
             {/* User Account */}
             <Link
               href="/login"
-              className="hidden sm:flex items-center gap-2 hover:text-blue-600 transition"
+              className="hidden sm:flex items-center gap-2 text-gray-700 hover:text-primary transition-colors font-medium"
             >
               <UserIcon className="w-6 h-6" />
               <span className="text-sm">Sign In</span>
@@ -62,12 +65,12 @@ export default function Header() {
             {/* Shopping Cart */}
             <Link
               href="/cart"
-              className="relative flex items-center gap-2 hover:text-blue-600 transition"
+              className="relative flex items-center gap-2 text-gray-700 hover:text-primary transition-colors font-medium"
             >
               <ShoppingCartIcon className="w-6 h-6" />
               <span className="hidden sm:inline text-sm">Cart</span>
               {getTotalItems() > 0 && (
-                <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                <span className="absolute -top-2 -right-2 bg-gradient-to-r from-red-500 to-red-600 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center shadow-lg">
                   {getTotalItems()}
                 </span>
               )}
@@ -76,60 +79,60 @@ export default function Header() {
             {/* Mobile Menu Toggle */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="md:hidden"
+              className="md:hidden text-gray-700 hover:text-primary transition-colors"
             >
               <Bars3Icon className="w-6 h-6" />
             </button>
           </div>
         </div>
 
-        {/* Mobile Search */}
+        {/* Mobile Search - Gold Theme */}
         <div className="md:hidden mt-4">
           <div className="relative">
             <input
               type="text"
               placeholder="Search for products..."
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-2.5 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-all"
             />
-            <button className="absolute right-2 top-2">
-              <MagnifyingGlassIcon className="w-5 h-5 text-gray-500" />
+            <button className="absolute right-2 top-2.5">
+              <MagnifyingGlassIcon className="w-5 h-5 text-primary" />
             </button>
           </div>
         </div>
       </div>
 
-      {/* Navigation */}
-      <nav className="bg-gray-50 border-t">
+      {/* Navigation - Refined Gold Theme */}
+      <nav className="bg-gradient-to-r from-slate-50 to-white border-t border-gray-200">
         <div className="container mx-auto px-4">
-          <ul className={`${isMenuOpen ? 'block' : 'hidden'} md:flex md:items-center md:gap-6 py-3`}>
+          <ul className={`${isMenuOpen ? 'block' : 'hidden'} md:flex md:items-center md:gap-8 py-3`}>
             <li>
-              <Link href="/" className="block py-2 hover:text-blue-600 transition">
+              <Link href="/" className="block py-2 text-gray-700 font-medium hover:text-primary transition-colors">
                 Home
               </Link>
             </li>
             <li>
-              <Link href="/products" className="block py-2 hover:text-blue-600 transition">
+              <Link href="/products" className="block py-2 text-gray-700 font-medium hover:text-primary transition-colors">
                 All Products
               </Link>
             </li>
             <li>
-              <Link href="/categories/electronics" className="block py-2 hover:text-blue-600 transition">
+              <Link href="/categories/electronics" className="block py-2 text-gray-700 font-medium hover:text-primary transition-colors">
                 Electronics
               </Link>
             </li>
             <li>
-              <Link href="/categories/clothing" className="block py-2 hover:text-blue-600 transition">
+              <Link href="/categories/clothing" className="block py-2 text-gray-700 font-medium hover:text-primary transition-colors">
                 Clothing
               </Link>
             </li>
             <li>
-              <Link href="/categories/home" className="block py-2 hover:text-blue-600 transition">
+              <Link href="/categories/home" className="block py-2 text-gray-700 font-medium hover:text-primary transition-colors">
                 Home & Living
               </Link>
             </li>
             <li>
-              <Link href="/deals" className="block py-2 text-red-600 font-semibold hover:text-red-700 transition">
-                Deals
+              <Link href="/deals" className="block py-2 text-red-600 font-bold hover:text-red-700 transition-colors flex items-center gap-1">
+                <span>🔥</span> Deals
               </Link>
             </li>
           </ul>

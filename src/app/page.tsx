@@ -97,15 +97,18 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Featured Categories - Modern Card Design */}
-      <section className="py-20 px-4">
+      {/* Featured Categories - Luxury Design */}
+      <section className="py-20 px-4 bg-white">
         <div className="container mx-auto">
-          <div className="text-center mb-12">
+          <div className="text-center mb-16">
+            <div className="inline-block px-4 py-2 bg-primary/10 rounded-full text-primary text-sm font-semibold mb-4">
+              Explore Our Collections
+            </div>
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
               Shop by Category
             </h2>
             <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-              Browse through our curated collection of premium products
+              Browse through our curated collection of premium products across multiple categories
             </p>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
@@ -113,15 +116,20 @@ export default async function Home() {
               <Link
                 key={category.id}
                 href={`/products?category=${category.slug}`}
-                className="group bg-white rounded-2xl p-8 text-center hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-primary/20 hover:-translate-y-2"
+                className="group bg-gradient-to-br from-white to-slate-50 rounded-2xl p-8 text-center hover:shadow-2xl transition-all duration-300 border-2 border-gray-100 hover:border-primary hover:-translate-y-2 relative overflow-hidden"
                 style={{ animationDelay: `${index * 50}ms` }}
               >
-                <div className="text-5xl mb-4 group-hover:scale-125 transition-transform duration-300">
-                  {getCategoryIcon(category.slug)}
+                {/* Gold accent on hover */}
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+
+                <div className="relative z-10">
+                  <div className="text-5xl mb-4 group-hover:scale-125 transition-transform duration-300">
+                    {getCategoryIcon(category.slug)}
+                  </div>
+                  <h3 className="font-bold text-gray-900 group-hover:text-primary transition-colors">
+                    {category.name}
+                  </h3>
                 </div>
-                <h3 className="font-semibold text-gray-900 group-hover:text-primary transition-colors">
-                  {category.name}
-                </h3>
               </Link>
             ))}
           </div>
@@ -133,12 +141,15 @@ export default async function Home() {
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between items-center mb-12">
             <div>
+              <div className="inline-block px-4 py-2 bg-primary/10 rounded-full text-primary text-sm font-semibold mb-3">
+                ⭐ Premium Selection
+              </div>
               <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-2">Featured Products</h2>
-              <p className="text-gray-600">Handpicked items just for you</p>
+              <p className="text-gray-600 text-lg">Handpicked items just for you</p>
             </div>
             <Link
               href="/products"
-              className="group mt-4 md:mt-0 inline-flex items-center gap-2 px-6 py-3 bg-primary text-white rounded-xl font-semibold hover:bg-primary-dark transition-all duration-300 shadow-lg hover:shadow-xl"
+              className="group mt-4 md:mt-0 inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-primary to-primary-light text-white rounded-xl font-bold hover:from-primary-dark hover:to-primary transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105"
             >
               View All Products
               <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -195,25 +206,27 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Features - Modern Icon Grid */}
+      {/* Features - Luxury Icon Grid */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             {[
-              { icon: '🚚', title: 'Free Shipping', desc: 'On all orders over $50', color: 'from-blue-500 to-cyan-500' },
-              { icon: '🔒', title: 'Secure Payment', desc: '100% protected transactions', color: 'from-purple-500 to-pink-500' },
-              { icon: '↩️', title: 'Easy Returns', desc: 'Hassle-free 30-day returns', color: 'from-orange-500 to-red-500' }
+              { icon: '🚚', title: 'Free Shipping', desc: 'On all orders over $50', color: 'from-primary to-accent' },
+              { icon: '🔒', title: 'Secure Payment', desc: '100% protected transactions', color: 'from-secondary to-primary-dark' },
+              { icon: '↩️', title: 'Easy Returns', desc: 'Hassle-free 30-day returns', color: 'from-accent to-primary-light' }
             ].map((feature, index) => (
               <div
                 key={index}
-                className="group relative bg-gradient-to-br from-slate-50 to-white rounded-2xl p-8 text-center hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:-translate-y-2"
+                className="group relative bg-gradient-to-br from-slate-50 to-white rounded-2xl p-8 text-center hover:shadow-2xl transition-all duration-300 border-2 border-gray-100 hover:border-primary hover:-translate-y-2"
               >
-                <div className={`absolute inset-0 bg-gradient-to-br ${feature.color} opacity-0 group-hover:opacity-5 rounded-2xl transition-opacity duration-300`}></div>
-                <div className="text-6xl mb-4 group-hover:scale-110 transition-transform duration-300">
-                  {feature.icon}
+                <div className={`absolute inset-0 bg-gradient-to-br ${feature.color} opacity-0 group-hover:opacity-10 rounded-2xl transition-opacity duration-300`}></div>
+                <div className="relative z-10">
+                  <div className="text-6xl mb-4 group-hover:scale-110 transition-transform duration-300">
+                    {feature.icon}
+                  </div>
+                  <h3 className="font-bold text-xl mb-2 text-gray-900 group-hover:text-primary transition-colors">{feature.title}</h3>
+                  <p className="text-gray-600">{feature.desc}</p>
                 </div>
-                <h3 className="font-bold text-xl mb-2 text-gray-900">{feature.title}</h3>
-                <p className="text-gray-600">{feature.desc}</p>
               </div>
             ))}
           </div>
