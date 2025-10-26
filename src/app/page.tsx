@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import ProductCard from "@/components/product/ProductCard";
+import { TruckIcon, LockClosedIcon, ArrowPathIcon, SparklesIcon, StarIcon, FireIcon, ArrowRightIcon } from '@heroicons/react/24/outline';
 
 export const dynamic = 'force-dynamic';
 
@@ -55,8 +56,9 @@ export default async function Home() {
         <div className="container mx-auto px-4 py-24 md:py-32 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             <div className="animate-fade-in-up">
-              <div className="inline-block px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-sm font-medium mb-6">
-                ✨ Your Premium Shopping Destination
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-sm font-medium mb-6">
+                <SparklesIcon className="w-4 h-4" />
+                Your Premium Shopping Destination
               </div>
               <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
                 Discover Quality,
@@ -74,9 +76,7 @@ export default async function Home() {
                   className="group px-8 py-4 bg-white text-primary rounded-xl font-semibold hover:bg-gray-50 transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105 flex items-center gap-2"
                 >
                   Start Shopping
-                  <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
+                  <ArrowRightIcon className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </Link>
                 <Link
                   href="/products?featured=true"
@@ -141,8 +141,9 @@ export default async function Home() {
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between items-center mb-12">
             <div>
-              <div className="inline-block px-4 py-2 bg-primary/10 rounded-full text-primary text-sm font-semibold mb-3">
-                ⭐ Premium Selection
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full text-primary text-sm font-semibold mb-3">
+                <StarIcon className="w-4 h-4" />
+                Premium Selection
               </div>
               <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-2">Featured Products</h2>
               <p className="text-gray-600 text-lg">Handpicked items just for you</p>
@@ -152,9 +153,7 @@ export default async function Home() {
               className="group mt-4 md:mt-0 inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-primary to-primary-light text-white rounded-xl font-bold hover:from-primary-dark hover:to-primary transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105"
             >
               View All Products
-              <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
+              <ArrowRightIcon className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
 
@@ -184,7 +183,7 @@ export default async function Home() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center max-w-3xl mx-auto">
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-white text-sm font-medium mb-6">
-              <span className="animate-pulse-soft">🔥</span>
+              <FireIcon className="w-5 h-5 animate-pulse-soft" />
               Limited Time Offer
             </div>
             <h2 className="text-4xl md:text-6xl font-bold text-white mb-4">
@@ -198,9 +197,7 @@ export default async function Home() {
               className="inline-flex items-center gap-2 px-8 py-4 bg-white text-red-600 rounded-xl font-bold hover:bg-gray-100 transition-all duration-300 shadow-2xl hover:shadow-3xl hover:scale-105"
             >
               Browse All Deals
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-              </svg>
+              <ArrowRightIcon className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
         </div>
@@ -211,9 +208,9 @@ export default async function Home() {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             {[
-              { icon: '🚚', title: 'Free Shipping', desc: 'On all orders over $50', color: 'from-primary to-accent' },
-              { icon: '🔒', title: 'Secure Payment', desc: '100% protected transactions', color: 'from-secondary to-primary-dark' },
-              { icon: '↩️', title: 'Easy Returns', desc: 'Hassle-free 30-day returns', color: 'from-accent to-primary-light' }
+              { Icon: TruckIcon, title: 'Free Shipping', desc: 'On all orders over $50', color: 'from-primary to-accent' },
+              { Icon: LockClosedIcon, title: 'Secure Payment', desc: '100% protected transactions', color: 'from-secondary to-primary-dark' },
+              { Icon: ArrowPathIcon, title: 'Easy Returns', desc: 'Hassle-free 30-day returns', color: 'from-accent to-primary-light' }
             ].map((feature, index) => (
               <div
                 key={index}
@@ -221,8 +218,8 @@ export default async function Home() {
               >
                 <div className={`absolute inset-0 bg-gradient-to-br ${feature.color} opacity-0 group-hover:opacity-10 rounded-2xl transition-opacity duration-300`}></div>
                 <div className="relative z-10">
-                  <div className="text-6xl mb-4 group-hover:scale-110 transition-transform duration-300">
-                    {feature.icon}
+                  <div className="mx-auto w-16 h-16 mb-4 text-primary group-hover:scale-110 transition-transform duration-300 flex items-center justify-center">
+                    <feature.Icon className="w-full h-full" strokeWidth={1.5} />
                   </div>
                   <h3 className="font-bold text-xl mb-2 text-gray-900 group-hover:text-primary transition-colors">{feature.title}</h3>
                   <p className="text-gray-600">{feature.desc}</p>
