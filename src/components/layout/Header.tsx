@@ -37,15 +37,15 @@ export default function Header() {
             ShopHub
           </Link>
 
-          {/* Search Bar - Gold Accent */}
+          {/* Search Bar - Premium Design */}
           <div className="hidden md:flex flex-1 max-w-2xl">
-            <div className="w-full relative">
+            <div className="w-full flex items-center bg-white border-2 border-gray-200 rounded-xl overflow-hidden hover:border-primary/30 focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/20 transition-all shadow-sm hover:shadow-md">
               <input
                 type="text"
                 placeholder="Search for products..."
-                className="w-full px-4 py-2.5 border-2 border-gray-200 rounded-l-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-all"
+                className="flex-1 px-5 py-3 text-gray-700 placeholder-gray-400 focus:outline-none bg-transparent"
               />
-              <button className="absolute right-0 top-0 h-full px-6 bg-gradient-to-r from-primary to-primary-light text-white rounded-r-xl hover:from-primary-dark hover:to-primary transition-all shadow-md hover:shadow-lg">
+              <button className="px-6 py-3 bg-gradient-to-r from-primary to-primary-light text-white hover:from-primary-dark hover:to-primary transition-all flex items-center justify-center">
                 <MagnifyingGlassIcon className="w-5 h-5" />
               </button>
             </div>
@@ -86,16 +86,16 @@ export default function Header() {
           </div>
         </div>
 
-        {/* Mobile Search - Gold Theme */}
+        {/* Mobile Search - Premium Design */}
         <div className="md:hidden mt-4">
-          <div className="relative">
+          <div className="flex items-center bg-white border-2 border-gray-200 rounded-xl overflow-hidden hover:border-primary/30 focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/20 transition-all shadow-sm">
             <input
               type="text"
               placeholder="Search for products..."
-              className="w-full px-4 py-2.5 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-all"
+              className="flex-1 px-4 py-3 text-gray-700 placeholder-gray-400 focus:outline-none bg-transparent"
             />
-            <button className="absolute right-2 top-2.5">
-              <MagnifyingGlassIcon className="w-5 h-5 text-primary" />
+            <button className="px-4 py-3 text-primary hover:text-primary-dark transition-colors">
+              <MagnifyingGlassIcon className="w-5 h-5" />
             </button>
           </div>
         </div>
