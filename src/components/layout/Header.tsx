@@ -1,9 +1,10 @@
 'use client'
 
 import Link from 'next/link'
-import { ShoppingCartIcon, UserIcon, MagnifyingGlassIcon, Bars3Icon } from '@heroicons/react/24/outline'
+import { ShoppingCartIcon, UserIcon, Bars3Icon } from '@heroicons/react/24/outline'
 import { useState } from 'react'
 import { useCartStore } from '@/store/cartStore'
+import SearchBar from '@/components/search/SearchBar'
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -37,20 +38,8 @@ export default function Header() {
             BitBuy
           </Link>
 
-          {/* Search Bar - Refined Premium Design */}
-          <div className="hidden md:flex flex-1 max-w-2xl">
-            <div className="relative w-full flex items-center bg-slate-50/50 border-2 border-gray-200/80 rounded-full overflow-hidden hover:border-primary/40 focus-within:border-primary focus-within:ring-4 focus-within:ring-primary/10 transition-all shadow-sm hover:shadow-md group">
-              <MagnifyingGlassIcon className="w-5 h-5 text-gray-400 ml-5 group-focus-within:text-primary transition-colors" />
-              <input
-                type="text"
-                placeholder="Search for products, categories..."
-                className="flex-1 px-4 py-3.5 text-gray-700 placeholder-gray-400 focus:outline-none bg-transparent font-medium"
-              />
-              <button className="m-1 px-6 py-2.5 bg-gradient-to-r from-primary to-primary-light text-white rounded-full hover:from-primary-dark hover:to-primary transition-all flex items-center justify-center gap-2 font-semibold shadow-md hover:shadow-lg">
-                <span className="text-sm">Search</span>
-              </button>
-            </div>
-          </div>
+          {/* Search Bar with Autocomplete */}
+          <SearchBar className="hidden md:flex flex-1 max-w-2xl" />
 
           {/* Action Buttons - Gold Theme */}
           <div className="flex items-center gap-4">
@@ -87,19 +76,9 @@ export default function Header() {
           </div>
         </div>
 
-        {/* Mobile Search - Refined Design */}
+        {/* Mobile Search with Autocomplete */}
         <div className="md:hidden mt-4">
-          <div className="relative flex items-center bg-slate-50/50 border-2 border-gray-200/80 rounded-full overflow-hidden hover:border-primary/40 focus-within:border-primary focus-within:ring-4 focus-within:ring-primary/10 transition-all shadow-sm group">
-            <MagnifyingGlassIcon className="w-5 h-5 text-gray-400 ml-4 group-focus-within:text-primary transition-colors" />
-            <input
-              type="text"
-              placeholder="Search products..."
-              className="flex-1 px-3 py-3 text-gray-700 placeholder-gray-400 focus:outline-none bg-transparent font-medium"
-            />
-            <button className="m-1 px-4 py-2 bg-gradient-to-r from-primary to-primary-light text-white rounded-full hover:from-primary-dark hover:to-primary transition-all shadow-md">
-              <MagnifyingGlassIcon className="w-4 h-4" />
-            </button>
-          </div>
+          <SearchBar showButton={false} placeholder="Search products..." />
         </div>
       </div>
 
