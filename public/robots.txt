@@ -1,0 +1,18 @@
+# robots.txt for BitBuy
+
+# Allow all crawlers
+User-agent: *
+Allow: /
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1
+
+# Disallow admin and API routes
+Disallow: /admin/
+Disallow: /api/
+Disallow: /cart
+Disallow: /checkout
+Disallow: /profile
+
+# Sitemap location
+Sitemap: https://bitbuy.com/sitemap.xml

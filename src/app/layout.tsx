@@ -14,8 +14,61 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "BitBuy - Your Premium E-Commerce Destination",
-  description: "Shop for household appliances, gadgets, clothing, sneakers, and everyday items at the best prices with BitBuy.",
+  metadataBase: new URL(process.env.NEXTAUTH_URL || 'http://localhost:3000'),
+  title: {
+    default: "BitBuy - Your Premium E-Commerce Destination",
+    template: "%s | BitBuy"
+  },
+  description: "Shop for household appliances, gadgets, clothing, sneakers, and everyday items at the best prices with BitBuy. Free shipping on orders over $50!",
+  keywords: ["ecommerce", "online shopping", "electronics", "clothing", "home goods", "shoes", "beauty products", "sports equipment", "BitBuy"],
+  authors: [{ name: "BitBuy" }],
+  creator: "BitBuy",
+  publisher: "BitBuy",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "/",
+    siteName: "BitBuy",
+    title: "BitBuy - Your Premium E-Commerce Destination",
+    description: "Shop for household appliances, gadgets, clothing, sneakers, and everyday items at the best prices. Free shipping on orders over $50!",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "BitBuy - Premium E-Commerce",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "BitBuy - Your Premium E-Commerce Destination",
+    description: "Shop for household appliances, gadgets, clothing, sneakers, and everyday items at the best prices.",
+    images: ["/og-image.jpg"],
+    creator: "@bitbuy",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon-16x16.png",
+    apple: "/apple-touch-icon.png",
+  },
+  manifest: "/site.webmanifest",
 };
 
 export default function RootLayout({

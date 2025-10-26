@@ -25,6 +25,7 @@
     "next": "16.0.0",
     "next-auth": "^5.0.0-beta.29",
     "next-cloudinary": "^6.16.2",
+    "next-seo": "^7.0.1",
     "react": "19.2.0",
     "react-dom": "19.2.0",
     "react-email": "^4.3.2",
