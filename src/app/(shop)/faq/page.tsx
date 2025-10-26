@@ -57,7 +57,7 @@ export default function FAQPage() {
     {
       category: 'Returns',
       question: 'Who pays for return shipping?',
-      answer: 'For defective or incorrect items, we cover return shipping costs. For standard returns, customers are responsible for return shipping unless you have ShopHub Premium membership.',
+      answer: 'For defective or incorrect items, we cover return shipping costs. For standard returns, customers are responsible for return shipping unless you have BitBuy Premium membership.',
     },
     {
       category: 'Payment',
@@ -189,7 +189,7 @@ export default function FAQPage() {
                 Contact Support
               </Link>
               <a
-                href="mailto:support@shophub.com"
+                href="mailto:support@bitbuy.com"
                 className="bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-50 transition border border-blue-200"
               >
                 Email Us
@@ -205,7 +205,7 @@ export default function FAQPage() {
             >
               <div className="text-4xl mb-3">ℹ️</div>
               <h3 className="font-bold mb-2">About Us</h3>
-              <p className="text-sm text-gray-600">Learn more about ShopHub</p>
+              <p className="text-sm text-gray-600">Learn more about BitBuy</p>
             </Link>
             <Link
               href="/terms"

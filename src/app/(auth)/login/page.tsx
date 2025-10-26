@@ -173,8 +173,8 @@ export default function LoginPage() {
         <div className="mt-4 p-4 bg-blue-50 rounded-lg">
           <p className="text-sm font-semibold text-blue-900 mb-2">Test Credentials:</p>
           <div className="text-xs text-blue-700 space-y-1">
-            <p><strong>Admin:</strong> admin@shophub.com / admin123</p>
-            <p><strong>User:</strong> user@shophub.com / user123</p>
+            <p><strong>Admin:</strong> admin@bitbuy.com / admin123</p>
+            <p><strong>User:</strong> user@bitbuy.com / user123</p>
           </div>
         </div>
       </div>

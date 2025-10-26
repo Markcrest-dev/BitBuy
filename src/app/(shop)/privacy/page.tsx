@@ -29,11 +29,11 @@ export default function PrivacyPage() {
             <section className="mb-8">
               <h2 className="text-2xl font-bold mb-4">1. Introduction</h2>
               <p className="text-gray-700 mb-4">
-                At ShopHub, we take your privacy seriously. This Privacy Policy explains how we collect,
+                At BitBuy, we take your privacy seriously. This Privacy Policy explains how we collect,
                 use, disclose, and safeguard your information when you visit our website and use our services.
               </p>
               <p className="text-gray-700">
-                By using ShopHub, you agree to the collection and use of information in accordance with this
+                By using BitBuy, you agree to the collection and use of information in accordance with this
                 policy. If you do not agree with our policies and practices, please do not use our Service.
               </p>
             </section>
@@ -114,7 +114,7 @@ export default function PrivacyPage() {
 
               <h3 className="text-xl font-bold mb-3 mt-6">Business Transfers</h3>
               <p className="text-gray-700 mb-4">
-                If ShopHub is involved in a merger, acquisition, or sale of assets, your information may be
+                If BitBuy is involved in a merger, acquisition, or sale of assets, your information may be
                 transferred as part of that transaction.
               </p>
 
@@ -191,7 +191,7 @@ export default function PrivacyPage() {
                 <li><strong>Objection:</strong> Object to processing of your information</li>
               </ul>
               <p className="text-gray-700 mt-4">
-                To exercise these rights, please contact us at privacy@shophub.com. We will respond to your
+                To exercise these rights, please contact us at privacy@bitbuy.com. We will respond to your
                 request within 30 days.
               </p>
             </section>
@@ -257,10 +257,10 @@ export default function PrivacyPage() {
               </p>
               <div className="bg-gray-50 p-4 rounded-lg">
                 <p className="text-gray-700">
-                  <strong>Email:</strong> privacy@shophub.com<br />
+                  <strong>Email:</strong> privacy@bitbuy.com<br />
                   <strong>Phone:</strong> +1 (555) 123-4567<br />
                   <strong>Address:</strong> 123 Commerce Street, New York, NY 10001<br />
-                  <strong>Privacy Officer:</strong> privacy@shophub.com
+                  <strong>Privacy Officer:</strong> privacy@bitbuy.com
                 </p>
               </div>
             </section>

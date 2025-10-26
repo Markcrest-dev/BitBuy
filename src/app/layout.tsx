@@ -14,8 +14,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "ShopHub - Your One-Stop E-Commerce Platform",
-  description: "Shop for household appliances, gadgets, clothing, sneakers, and everyday items at the best prices.",
+  title: "BitBuy - Your Premium E-Commerce Destination",
+  description: "Shop for household appliances, gadgets, clothing, sneakers, and everyday items at the best prices with BitBuy.",
 };
 
 export default function RootLayout({

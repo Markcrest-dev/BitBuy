@@ -66,8 +66,8 @@ export default function ContactPage() {
                 <div>
                   <h3 className="font-bold mb-1">Email Us</h3>
                   <p className="text-gray-600 text-sm mb-2">Send us an email anytime</p>
-                  <a href="mailto:support@shophub.com" className="text-blue-600 hover:text-blue-700 font-semibold">
-                    support@shophub.com
+                  <a href="mailto:support@bitbuy.com" className="text-blue-600 hover:text-blue-700 font-semibold">
+                    support@bitbuy.com
                   </a>
                 </div>
               </div>

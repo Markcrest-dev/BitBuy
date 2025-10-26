@@ -17,7 +17,7 @@ export default function AboutPage() {
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-20">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="text-5xl font-bold mb-6">About ShopHub</h1>
+          <h1 className="text-5xl font-bold mb-6">About BitBuy</h1>
           <p className="text-xl text-blue-100 max-w-3xl mx-auto">
             Your trusted online marketplace for quality products at unbeatable prices
           </p>
@@ -31,7 +31,7 @@ export default function AboutPage() {
             <h2 className="text-3xl font-bold mb-6 text-center">Our Story</h2>
             <div className="prose prose-lg max-w-none text-gray-700">
               <p className="mb-4">
-                Founded in 2025, ShopHub started with a simple mission: to make online shopping accessible,
+                Founded in 2025, BitBuy started with a simple mission: to make online shopping accessible,
                 affordable, and enjoyable for everyone. What began as a small startup has grown into a
                 thriving e-commerce platform serving thousands of customers worldwide.
               </p>
@@ -41,7 +41,7 @@ export default function AboutPage() {
                 a platform that combines cutting-edge technology with old-fashioned customer service.
               </p>
               <p>
-                Today, ShopHub offers a carefully curated selection of products across multiple categories,
+                Today, BitBuy offers a carefully curated selection of products across multiple categories,
                 from electronics and home goods to fashion and beauty. Every item in our catalog is chosen
                 with care, ensuring quality and value for our customers.
               </p>
@@ -83,7 +83,7 @@ export default function AboutPage() {
       {/* Stats */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-12 text-center">ShopHub By The Numbers</h2>
+          <h2 className="text-3xl font-bold mb-12 text-center">BitBuy By The Numbers</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             <div className="text-center">
               <p className="text-4xl font-bold text-blue-600 mb-2">10K+</p>
@@ -108,7 +108,7 @@ export default function AboutPage() {
       {/* Why Choose Us */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-12 text-center">Why Choose ShopHub?</h2>
+          <h2 className="text-3xl font-bold mb-12 text-center">Why Choose BitBuy?</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             <div className="flex gap-4">
               <div className="flex-shrink-0">

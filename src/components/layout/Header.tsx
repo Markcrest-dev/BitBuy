@@ -34,7 +34,7 @@ export default function Header() {
         <div className="flex items-center justify-between gap-4">
           {/* Logo - Luxury Gold Branding */}
           <Link href="/" className="text-2xl font-bold bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent flex-shrink-0 hover:scale-105 transition-transform">
-            ShopHub
+            BitBuy
           </Link>
 
           {/* Search Bar - Refined Premium Design */}

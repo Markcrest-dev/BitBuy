@@ -29,7 +29,7 @@ export default function TermsPage() {
             <section className="mb-8">
               <h2 className="text-2xl font-bold mb-4">1. Agreement to Terms</h2>
               <p className="text-gray-700 mb-4">
-                By accessing or using ShopHub ("the Service"), you agree to be bound by these Terms of Service
+                By accessing or using BitBuy ("the Service"), you agree to be bound by these Terms of Service
                 ("Terms"). If you disagree with any part of these terms, you may not access the Service.
               </p>
               <p className="text-gray-700">
@@ -131,7 +131,7 @@ export default function TermsPage() {
             <section className="mb-8">
               <h2 className="text-2xl font-bold mb-4">7. Intellectual Property</h2>
               <p className="text-gray-700 mb-4">
-                The Service and its original content, features, and functionality are owned by ShopHub and
+                The Service and its original content, features, and functionality are owned by BitBuy and
                 are protected by international copyright, trademark, patent, trade secret, and other
                 intellectual property laws.
               </p>
@@ -184,7 +184,7 @@ export default function TermsPage() {
             <section className="mb-8">
               <h2 className="text-2xl font-bold mb-4">11. Indemnification</h2>
               <p className="text-gray-700">
-                You agree to indemnify, defend, and hold harmless ShopHub and its officers, directors,
+                You agree to indemnify, defend, and hold harmless BitBuy and its officers, directors,
                 employees, and agents from any claims, liabilities, damages, losses, or expenses arising
                 from your use of the Service or violation of these Terms.
               </p>
@@ -218,7 +218,7 @@ export default function TermsPage() {
               </p>
               <div className="bg-gray-50 p-4 rounded-lg">
                 <p className="text-gray-700">
-                  <strong>Email:</strong> legal@shophub.com<br />
+                  <strong>Email:</strong> legal@bitbuy.com<br />
                   <strong>Phone:</strong> +1 (555) 123-4567<br />
                   <strong>Address:</strong> 123 Commerce Street, New York, NY 10001
                 </p>
