@@ -14,12 +14,14 @@ datasource db {
 model User {
   id        String    @id @default(cuid())
   email     String    @unique
-  password  String
+  password  String?
   name      String?
   phone     String?
+  image     String?
   role      Role      @default(USER)
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
+  emailVerified DateTime?
 
   addresses       Address[]
   carts           Cart[]
@@ -30,11 +32,90 @@ model User {
   sessions        Session[]
   loyaltyAccount  LoyaltyAccount?
   pointsHistory   LoyaltyTransaction[]
+  vendor          Vendor?
+  messages        Message[]
 }
 
 enum Role {
   USER
   ADMIN
+  VENDOR
+}
+
+// Vendor/Seller model
+model Vendor {
+  id              String    @id @default(cuid())
+  userId          String    @unique
+  businessName    String
+  businessEmail   String    @unique
+  businessPhone   String?
+  description     String?   @db.Text
+  logo            String?
+  banner          String?
+  address         String?
+  city            String?
+  country         String?
+  taxId           String?
+  status          VendorStatus @default(PENDING)
+  commission      Float     @default(15.0) // Platform commission percentage
+  rating          Float?
+  totalSales      Float     @default(0)
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  user            User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  products        Product[]
+  orders          Order[]
+  payouts         VendorPayout[]
+}
+
+enum VendorStatus {
+  PENDING
+  APPROVED
+  SUSPENDED
+  REJECTED
+}
+
+model VendorPayout {
+  id          String        @id @default(cuid())
+  vendorId    String
+  amount      Float
+  status      PayoutStatus  @default(PENDING)
+  method      String?
+  reference   String?
+  createdAt   DateTime      @default(now())
+  processedAt DateTime?
+
+  vendor      Vendor        @relation(fields: [vendorId], references: [id], onDelete: Cascade)
+}
+
+enum PayoutStatus {
+  PENDING
+  PROCESSING
+  COMPLETED
+  FAILED
+}
+
+// Currency model
+model Currency {
+  id          String   @id @default(cuid())
+  code        String   @unique // USD, EUR, GBP, etc.
+  name        String
+  symbol      String
+  rate        Float    @default(1.0) // Exchange rate relative to base currency (USD)
+  isActive    Boolean  @default(true)
+  updatedAt   DateTime @updatedAt
+}
+
+// User preferences
+model UserPreferences {
+  id              String   @id @default(cuid())
+  userId          String   @unique
+  currencyCode    String   @default("USD")
+  language        String   @default("en")
+  notifications   Boolean  @default(true)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
 }
 
 // NextAuth models
@@ -115,12 +196,14 @@ model Product {
   inventory    Int      @default(0)
   images       String[]
   categoryId   String
+  vendorId     String?
   featured     Boolean  @default(false)
   active       Boolean  @default(true)
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 
   category   Category     @relation(fields: [categoryId], references: [id])
+  vendor     Vendor?      @relation(fields: [vendorId], references: [id])
   cartItems  CartItem[]
   orderItems OrderItem[]
   reviews    Review[]
@@ -158,17 +241,20 @@ model CartItem {
 model Order {
   id                String      @id @default(cuid())
   userId            String
+  vendorId          String?
   orderNumber       String      @unique
   status            OrderStatus @default(PENDING)
   subtotal          Float
   tax               Float
   shipping          Float
   total             Float
+  currencyCode      String      @default("USD")
   shippingAddressId String
   createdAt         DateTime    @default(now())
   updatedAt         DateTime    @updatedAt
 
   user            User        @relation(fields: [userId], references: [id])
+  vendor          Vendor?     @relation(fields: [vendorId], references: [id])
   shippingAddress Address     @relation(fields: [shippingAddressId], references: [id])
   items           OrderItem[]
 }
@@ -297,5 +383,24 @@ model GiftCardTransaction {
   createdAt  DateTime @default(now())
 
   card GiftCard @relation(fields: [cardId], references: [id], onDelete: Cascade)
+}
+
+// Chat/Support System
+model Message {
+  id          String      @id @default(cuid())
+  userId      String?
+  role        MessageRole
+  content     String      @db.Text
+  conversationId String?
+  isRead      Boolean     @default(false)
+  createdAt   DateTime    @default(now())
+
+  user        User?       @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+enum MessageRole {
+  USER
+  ASSISTANT
+  SYSTEM
 }
 

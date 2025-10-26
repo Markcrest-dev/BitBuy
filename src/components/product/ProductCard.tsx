@@ -1,9 +1,11 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { ProductWithCategory } from '@/types'
-import { formatPrice } from '@/lib/utils'
 import { useCartStore } from '@/store/cartStore'
+import { useCurrency } from '@/hooks/useCurrency'
+import { useState } from 'react'
 
 interface ProductCardProps {
   product: ProductWithCategory
@@ -11,6 +13,8 @@ interface ProductCardProps {
 
 export default function ProductCard({ product }: ProductCardProps) {
   const addItem = useCartStore((state) => state.addItem)
+  const { formatPrice } = useCurrency()
+  const [imageError, setImageError] = useState(false)
 
   const discountPercentage = product.comparePrice
     ? Math.round(((product.comparePrice - product.price) / product.comparePrice) * 100)
@@ -35,11 +39,14 @@ export default function ProductCard({ product }: ProductCardProps) {
     >
       {/* Product Image */}
       <div className="relative aspect-square bg-gradient-to-br from-gray-50 to-gray-100 overflow-hidden">
-        {product.images[0] ? (
-          <img
+        {product.images[0] && !imageError ? (
+          <Image
             src={product.images[0]}
             alt={product.name}
-            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+            fill
+            sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
+            className="object-cover group-hover:scale-110 transition-transform duration-500"
+            onError={() => setImageError(true)}
           />
         ) : (
           <div className="w-full h-full flex items-center justify-center text-gray-300">

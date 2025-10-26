@@ -9,6 +9,7 @@ import ToastManager from "@/components/providers/ToastManager";
 import ModalManager from "@/components/providers/ModalManager";
 import PWAInstallPrompt from "@/components/pwa/PWAInstallPrompt";
 import ComparisonBar from "@/components/product/ComparisonBar";
+import ChatAssistant from "@/components/ChatAssistant";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -93,6 +94,7 @@ export default function RootLayout({
             <ModalManager />
             <PWAInstallPrompt />
             <ComparisonBar />
+            <ChatAssistant />
           </ReactQueryProvider>
         </SessionProvider>
       </body>

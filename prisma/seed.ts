@@ -1,5 +1,6 @@
 import { PrismaClient } from '@prisma/client'
 import bcrypt from 'bcryptjs'
+import { additionalProducts } from './products-data'
 
 const prisma = new PrismaClient()
 
@@ -239,18 +240,6 @@ async function main() {
     },
     // Sports
     {
-      name: 'Yoga Mat Premium',
-      slug: 'yoga-mat-premium',
-      description: 'Extra thick yoga mat with carrying strap, non-slip surface.',
-      price: 29.99,
-      comparePrice: 49.99,
-      sku: 'SPORT-YOGA-001',
-      inventory: 90,
-      images: ['https://images.unsplash.com/photo-1601925260368-ae2f83cf8b7f?w=800&q=80'],
-      categoryId: createdCategories[5].id,
-      featured: false,
-    },
-    {
       name: 'Adjustable Dumbbells Set',
       slug: 'adjustable-dumbbells-set',
       description: 'Space-saving adjustable dumbbell set, 5-25 lbs per hand.',
@@ -271,6 +260,38 @@ async function main() {
       create: product,
     })
     console.log(`✅ Created product: ${created.name}`)
+  }
+
+  // Create additional products from products-data file
+  console.log('🌱 Seeding additional products...')
+  for (const productData of additionalProducts) {
+    // Find the category by slug
+    const category = createdCategories.find((cat) => cat.slug === productData.category)
+    if (!category) {
+      console.warn(`⚠️  Category not found for: ${productData.name}`)
+      continue
+    }
+
+    const product = {
+      name: productData.name,
+      slug: productData.slug,
+      description: productData.description,
+      price: productData.price,
+      comparePrice: productData.comparePrice,
+      sku: productData.sku,
+      inventory: productData.inventory,
+      images: productData.images,
+      categoryId: category.id,
+      featured: productData.featured,
+      active: true,
+    }
+
+    const created = await prisma.product.upsert({
+      where: { slug: product.slug },
+      update: {},
+      create: product,
+    })
+    console.log(`✅ Created additional product: ${created.name}`)
   }
 
   // Create test address for test user

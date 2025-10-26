@@ -54,95 +54,11 @@ export default async function Home() {
 
   return (
     <div className="bg-gradient-to-b from-amber-50 to-white">
-      {/* Hero Section - Gold Theme */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-amber-600 via-yellow-600 to-amber-700 text-white">
-        {/* Decorative Elements */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-20 right-20 w-96 h-96 bg-white rounded-full blur-3xl"></div>
-          <div className="absolute bottom-20 left-20 w-96 h-96 bg-yellow-300 rounded-full blur-3xl"></div>
-        </div>
-
-        <div className="container mx-auto px-4 py-24 md:py-32 relative z-10">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="animate-fade-in-up">
-              <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-                Discover Quality,
-                <br />
-                <span className="bg-gradient-to-r from-yellow-200 to-white bg-clip-text text-transparent">
-                  Experience Excellence
-                </span>
-              </h1>
-              <p className="text-xl md:text-2xl mb-10 text-yellow-100 max-w-2xl mx-auto leading-relaxed">
-                Shop premium household appliances, cutting-edge gadgets, fashion, and everyday essentials—all in one place.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <Link
-                  href="/products"
-                  className="group px-8 py-4 bg-white text-amber-600 rounded-xl font-semibold hover:bg-yellow-50 transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105 flex items-center gap-2"
-                >
-                  Start Shopping
-                  <ArrowRightIcon className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </Link>
-                <Link
-                  href="/products?featured=true"
-                  className="px-8 py-4 bg-white/10 backdrop-blur-sm text-white rounded-xl font-semibold hover:bg-white/20 transition-all duration-300 border border-white/30"
-                >
-                  Explore Deals
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Categories - Gold Theme */}
-      <section className="py-20 px-4 bg-white">
-        <div className="container mx-auto">
-          <div className="text-center mb-16">
-            <div className="inline-block px-4 py-2 bg-amber-100 rounded-full text-amber-700 text-sm font-semibold mb-4">
-              Explore Our Collections
-            </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              Shop by Category
-            </h2>
-            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-              Browse through our curated collection of premium products across multiple categories
-            </p>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-            {categories.map((category, index) => (
-              <Link
-                key={category.id}
-                href={`/products?category=${category.slug}`}
-                className="group bg-gradient-to-br from-white to-amber-50 rounded-2xl p-8 text-center hover:shadow-2xl transition-all duration-300 border-2 border-amber-100 hover:border-amber-400 hover:-translate-y-2 relative overflow-hidden"
-                style={{ animationDelay: `${index * 50}ms` }}
-              >
-                {/* Gold accent on hover */}
-                <div className="absolute inset-0 bg-gradient-to-br from-amber-500/5 to-yellow-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-
-                <div className="relative z-10">
-                  <div className="text-5xl mb-4 group-hover:scale-125 transition-transform duration-300">
-                    {getCategoryIcon(category.slug)}
-                  </div>
-                  <h3 className="font-bold text-gray-900 group-hover:text-amber-600 transition-colors">
-                    {category.name}
-                  </h3>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Featured Products - Gold Theme */}
       <section className="py-20 bg-gradient-to-b from-white to-amber-50">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between items-center mb-12">
             <div>
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-amber-100 rounded-full text-amber-700 text-sm font-semibold mb-3">
-                <StarIcon className="w-4 h-4" />
-                Premium Selection
-              </div>
               <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-2">Featured Products</h2>
               <p className="text-gray-600 text-lg">Handpicked items just for you</p>
             </div>

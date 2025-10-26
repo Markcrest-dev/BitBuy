@@ -5,6 +5,7 @@ import { ShoppingCartIcon, UserIcon, Bars3Icon } from '@heroicons/react/24/outli
 import { useState } from 'react'
 import { useCartStore } from '@/store/cartStore'
 import SearchBar from '@/components/search/SearchBar'
+import CurrencySelector from '@/components/CurrencySelector'
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -19,13 +20,16 @@ export default function Header() {
             <span className="text-accent">✨</span>
             Free shipping on orders over $50!
           </p>
-          <div className="flex gap-6">
-            <Link href="/track-order" className="hover:text-accent transition-colors">
-              Track Order
-            </Link>
-            <Link href="/help" className="hover:text-accent transition-colors">
-              Help
-            </Link>
+          <div className="flex items-center gap-4">
+            <CurrencySelector />
+            <div className="hidden sm:flex gap-6">
+              <Link href="/track-order" className="hover:text-accent transition-colors">
+                Track Order
+              </Link>
+              <Link href="/help" className="hover:text-accent transition-colors">
+                Help
+              </Link>
+            </div>
           </div>
         </div>
       </div>
