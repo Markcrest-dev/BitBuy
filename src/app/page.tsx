@@ -56,10 +56,6 @@ export default async function Home() {
         <div className="container mx-auto px-4 py-24 md:py-32 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             <div className="animate-fade-in-up">
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-sm font-medium mb-6">
-                <SparklesIcon className="w-4 h-4" />
-                Your Premium Shopping Destination
-              </div>
               <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
                 Discover Quality,
                 <br />
