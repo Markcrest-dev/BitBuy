@@ -107,7 +107,7 @@ export default function Header() {
               </Link>
             </li>
             <li>
-              <Link href="/categories/home" className="block py-2 text-gray-700 font-medium hover:text-primary transition-colors">
+              <Link href="/categories/home-living" className="block py-2 text-gray-700 font-medium hover:text-primary transition-colors">
                 Home & Living
               </Link>
             </li>
