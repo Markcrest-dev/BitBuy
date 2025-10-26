@@ -61,16 +61,44 @@ export default function CheckoutPage() {
     setIsProcessing(true)
 
     try {
-      // TODO: Implement actual payment processing
-      // This is a placeholder simulation
-      await new Promise((resolve) => setTimeout(resolve, 2000))
+      // Prepare order data
+      const orderData = {
+        items: items.map((item) => ({
+          productId: item.id,
+          quantity: item.quantity,
+          price: item.price,
+        })),
+        shippingAddress: {
+          fullName: `${shippingInfo.firstName} ${shippingInfo.lastName}`,
+          phone: shippingInfo.phone,
+          address: shippingInfo.address,
+          city: shippingInfo.city,
+          state: shippingInfo.state,
+          zipCode: shippingInfo.zipCode,
+          country: shippingInfo.country,
+        },
+        paymentMethod: 'card', // In a real app, this would come from a payment gateway
+      }
+
+      // Create order via API
+      const response = await fetch('/api/orders', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(orderData),
+      })
+
+      if (!response.ok) {
+        const error = await response.json()
+        throw new Error(error.error || 'Failed to create order')
+      }
+
+      const order = await response.json()
 
       // Clear cart and redirect to confirmation
-      const orderId = Math.random().toString(36).substring(7).toUpperCase()
       clearCart()
-      router.push(`/order-confirmation?orderId=${orderId}`)
-    } catch (error) {
-      alert('Payment failed. Please try again.')
+      router.push(`/order-confirmation?orderId=${order.id}`)
+    } catch (error: any) {
+      alert(error.message || 'Payment failed. Please try again.')
     } finally {
       setIsProcessing(false)
     }
