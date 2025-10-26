@@ -1,0 +1,59 @@
+{
+  "common": {
+    "home": "Startseite",
+    "products": "Produkte",
+    "cart": "Warenkorb",
+    "checkout": "Kasse",
+    "login": "Anmelden",
+    "register": "Registrieren",
+    "logout": "Abmelden",
+    "search": "Suchen",
+    "searchPlaceholder": "Produkte suchen...",
+    "categories": "Kategorien",
+    "account": "Mein Konto",
+    "orders": "Bestellungen",
+    "wishlist": "Wunschliste",
+    "loading": "Laden...",
+    "error": "Fehler",
+    "success": "Erfolg",
+    "addToCart": "In den Warenkorb",
+    "buyNow": "Jetzt kaufen",
+    "viewDetails": "Details ansehen",
+    "price": "Preis",
+    "quantity": "Menge",
+    "total": "Gesamt",
+    "subtotal": "Zwischensumme",
+    "shipping": "Versand",
+    "tax": "Steuer",
+    "apply": "Anwenden",
+    "cancel": "Abbrechen",
+    "save": "Speichern",
+    "delete": "Löschen",
+    "edit": "Bearbeiten",
+    "remove": "Entfernen",
+    "close": "Schließen",
+    "back": "Zurück",
+    "next": "Weiter",
+    "previous": "Zurück",
+    "continue": "Fortfahren",
+    "continueShopping": "Weiter einkaufen"
+  },
+  "header": {
+    "allCategories": "Alle Kategorien",
+    "signIn": "Anmelden",
+    "myAccount": "Mein Konto",
+    "myOrders": "Meine Bestellungen",
+    "wishlist": "Wunschliste",
+    "settings": "Einstellungen",
+    "signOut": "Abmelden"
+  },
+  "home": {
+    "hero": {
+      "title": "Willkommen bei BitBuy",
+      "subtitle": "Ihr Premium E-Commerce-Ziel",
+      "description": "Kaufen Sie Haushaltsgeräte, Gadgets, Kleidung und Alltagsgegenstände zu den besten Preisen",
+      "shopNow": "Jetzt einkaufen",
+      "exploreDeals": "Angebote entdecken"
+    }
+  }
+}

@@ -2,6 +2,8 @@
  * Utilities for generating JSON-LD structured data for SEO
  */
 
+import React from 'react';
+
 interface Product {
   id: string
   name: string

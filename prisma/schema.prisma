@@ -21,13 +21,15 @@ model User {
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
 
-  addresses Address[]
-  carts     Cart[]
-  orders    Order[]
-  reviews   Review[]
-  wishlist  Wishlist[]
-  accounts  Account[]
-  sessions  Session[]
+  addresses       Address[]
+  carts           Cart[]
+  orders          Order[]
+  reviews         Review[]
+  wishlist        Wishlist[]
+  accounts        Account[]
+  sessions        Session[]
+  loyaltyAccount  LoyaltyAccount?
+  pointsHistory   LoyaltyTransaction[]
 }
 
 enum Role {
@@ -221,3 +223,79 @@ model Wishlist {
 
   @@unique([userId, productId])
 }
+
+// Loyalty Program models
+model LoyaltyAccount {
+  id              String   @id @default(cuid())
+  userId          String   @unique
+  points          Int      @default(0)
+  totalEarned     Int      @default(0)
+  totalRedeemed   Int      @default(0)
+  tier            LoyaltyTier @default(BRONZE)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  transactions    LoyaltyTransaction[]
+}
+
+enum LoyaltyTier {
+  BRONZE
+  SILVER
+  GOLD
+  PLATINUM
+}
+
+model LoyaltyTransaction {
+  id          String              @id @default(cuid())
+  userId      String
+  accountId   String
+  type        LoyaltyTransactionType
+  points      Int
+  description String
+  orderId     String?
+  createdAt   DateTime            @default(now())
+
+  user    User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  account LoyaltyAccount @relation(fields: [accountId], references: [id], onDelete: Cascade)
+}
+
+enum LoyaltyTransactionType {
+  EARNED
+  REDEEMED
+  EXPIRED
+  BONUS
+}
+
+// Gift Card model
+model GiftCard {
+  id          String          @id @default(cuid())
+  code        String          @unique
+  amount      Float
+  balance     Float
+  status      GiftCardStatus  @default(ACTIVE)
+  purchasedBy String?
+  createdAt   DateTime        @default(now())
+  expiresAt   DateTime?
+
+  transactions GiftCardTransaction[]
+}
+
+enum GiftCardStatus {
+  ACTIVE
+  USED
+  EXPIRED
+  CANCELLED
+}
+
+model GiftCardTransaction {
+  id         String   @id @default(cuid())
+  cardId     String
+  orderId    String?
+  amount     Float
+  type       String
+  createdAt  DateTime @default(now())
+
+  card GiftCard @relation(fields: [cardId], references: [id], onDelete: Cascade)
+}
+

@@ -7,6 +7,8 @@ import ReactQueryProvider from "@/providers/ReactQueryProvider";
 import SessionProvider from "@/providers/SessionProvider";
 import ToastManager from "@/components/providers/ToastManager";
 import ModalManager from "@/components/providers/ModalManager";
+import PWAInstallPrompt from "@/components/pwa/PWAInstallPrompt";
+import ComparisonBar from "@/components/product/ComparisonBar";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -68,7 +70,7 @@ export const metadata: Metadata = {
     shortcut: "/favicon-16x16.png",
     apple: "/apple-touch-icon.png",
   },
-  manifest: "/site.webmanifest",
+  manifest: "/manifest.json",
 };
 
 export default function RootLayout({
@@ -78,6 +80,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <script src="/register-sw.js" defer />
+      </head>
       <body className={`${inter.variable} font-sans antialiased`}>
         <SessionProvider>
           <ReactQueryProvider>
@@ -86,6 +91,8 @@ export default function RootLayout({
             <Footer />
             <ToastManager />
             <ModalManager />
+            <PWAInstallPrompt />
+            <ComparisonBar />
           </ReactQueryProvider>
         </SessionProvider>
       </body>
