@@ -43,68 +43,106 @@ export default async function Home() {
   ]);
 
   return (
-    <div className="bg-gray-50">
-      {/* Hero Section */}
-      <section className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-20">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl">
-            <h1 className="text-5xl font-bold mb-6">
-              Welcome to ShopHub
-            </h1>
-            <p className="text-xl mb-8 text-blue-100">
-              Discover amazing deals on household appliances, gadgets, clothing, sneakers, and everyday essentials.
-            </p>
-            <div className="flex gap-4">
-              <Link
-                href="/products"
-                className="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition"
-              >
-                Shop Now
-              </Link>
-              <Link
-                href="/products?featured=true"
-                className="bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-600 transition border border-blue-500"
-              >
-                View Deals
-              </Link>
+    <div className="bg-gradient-to-b from-slate-50 to-white">
+      {/* Hero Section - Premium Design */}
+      <section className="relative overflow-hidden bg-gradient-to-br from-primary via-primary-dark to-secondary text-white">
+        {/* Decorative Elements */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-20 right-20 w-96 h-96 bg-white rounded-full blur-3xl"></div>
+          <div className="absolute bottom-20 left-20 w-96 h-96 bg-accent rounded-full blur-3xl"></div>
+        </div>
+
+        <div className="container mx-auto px-4 py-24 md:py-32 relative z-10">
+          <div className="max-w-4xl mx-auto text-center">
+            <div className="animate-fade-in-up">
+              <div className="inline-block px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-sm font-medium mb-6">
+                ✨ Your Premium Shopping Destination
+              </div>
+              <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+                Discover Quality,
+                <br />
+                <span className="bg-gradient-to-r from-accent to-yellow-300 bg-clip-text text-transparent">
+                  Experience Excellence
+                </span>
+              </h1>
+              <p className="text-xl md:text-2xl mb-10 text-blue-100 max-w-2xl mx-auto leading-relaxed">
+                Shop premium household appliances, cutting-edge gadgets, fashion, and everyday essentials—all in one place.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <Link
+                  href="/products"
+                  className="group px-8 py-4 bg-white text-primary rounded-xl font-semibold hover:bg-gray-50 transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105 flex items-center gap-2"
+                >
+                  Start Shopping
+                  <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </Link>
+                <Link
+                  href="/products?featured=true"
+                  className="px-8 py-4 bg-white/10 backdrop-blur-sm text-white rounded-xl font-semibold hover:bg-white/20 transition-all duration-300 border border-white/30"
+                >
+                  Explore Deals
+                </Link>
+              </div>
             </div>
           </div>
         </div>
+
+        {/* Wave Divider */}
+        <div className="absolute bottom-0 left-0 right-0">
+          <svg className="w-full h-12 md:h-24 text-white" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" fill="currentColor"></path>
+          </svg>
+        </div>
       </section>
 
-      {/* Featured Categories */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-8 text-center">Shop by Category</h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-            {categories.map((category) => (
+      {/* Featured Categories - Modern Card Design */}
+      <section className="py-20 px-4">
+        <div className="container mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+              Shop by Category
+            </h2>
+            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+              Browse through our curated collection of premium products
+            </p>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+            {categories.map((category, index) => (
               <Link
                 key={category.id}
                 href={`/products?category=${category.slug}`}
-                className="bg-white rounded-lg p-6 text-center hover:shadow-lg transition group"
+                className="group bg-white rounded-2xl p-8 text-center hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-primary/20 hover:-translate-y-2"
+                style={{ animationDelay: `${index * 50}ms` }}
               >
-                <div className="text-4xl mb-3 group-hover:scale-110 transition">
+                <div className="text-5xl mb-4 group-hover:scale-125 transition-transform duration-300">
                   {getCategoryIcon(category.slug)}
                 </div>
-                <h3 className="font-semibold text-gray-800">{category.name}</h3>
+                <h3 className="font-semibold text-gray-900 group-hover:text-primary transition-colors">
+                  {category.name}
+                </h3>
               </Link>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Featured Products */}
-      <section className="py-16 bg-white">
+      {/* Featured Products - Premium Grid */}
+      <section className="py-20 bg-gradient-to-b from-white to-slate-50">
         <div className="container mx-auto px-4">
-          <div className="flex justify-between items-center mb-8">
-            <h2 className="text-3xl font-bold">Featured Products</h2>
+          <div className="flex flex-col md:flex-row justify-between items-center mb-12">
+            <div>
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-2">Featured Products</h2>
+              <p className="text-gray-600">Handpicked items just for you</p>
+            </div>
             <Link
               href="/products"
-              className="text-blue-600 hover:text-blue-700 font-semibold flex items-center gap-2"
+              className="group mt-4 md:mt-0 inline-flex items-center gap-2 px-6 py-3 bg-primary text-white rounded-xl font-semibold hover:bg-primary-dark transition-all duration-300 shadow-lg hover:shadow-xl"
             >
-              View All
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              View All Products
+              <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
             </Link>
           </div>
@@ -116,50 +154,68 @@ export default async function Home() {
               ))}
             </div>
           ) : (
-            <div className="text-center py-12">
-              <p className="text-gray-500 text-lg">No featured products available</p>
+            <div className="text-center py-16 bg-white rounded-2xl border-2 border-dashed border-gray-200">
+              <div className="text-6xl mb-4">📦</div>
+              <p className="text-gray-500 text-lg font-medium">No featured products available yet</p>
+              <p className="text-gray-400 text-sm mt-2">Check back soon for amazing deals!</p>
             </div>
           )}
         </div>
       </section>
 
-      {/* Flash Deals Section */}
-      <section className="py-16 bg-red-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold text-red-600 mb-2">Flash Deals</h2>
-            <p className="text-gray-600">Limited time offers - Hurry up!</p>
-          </div>
-          <div className="text-center py-8">
+      {/* Flash Deals - Eye-catching Banner */}
+      <section className="py-20 bg-gradient-to-r from-red-600 via-red-500 to-orange-500 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute top-10 left-10 w-64 h-64 bg-white rounded-full blur-3xl"></div>
+          <div className="absolute bottom-10 right-10 w-64 h-64 bg-yellow-300 rounded-full blur-3xl"></div>
+        </div>
+
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="text-center max-w-3xl mx-auto">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-white text-sm font-medium mb-6">
+              <span className="animate-pulse-soft">🔥</span>
+              Limited Time Offer
+            </div>
+            <h2 className="text-4xl md:text-6xl font-bold text-white mb-4">
+              Flash Deals
+            </h2>
+            <p className="text-xl text-red-100 mb-8">
+              Don't miss out on incredible savings - Grab them before they're gone!
+            </p>
             <Link
               href="/products?sort=discount"
-              className="inline-block bg-red-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-red-700 transition"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-white text-red-600 rounded-xl font-bold hover:bg-gray-100 transition-all duration-300 shadow-2xl hover:shadow-3xl hover:scale-105"
             >
               Browse All Deals
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
             </Link>
           </div>
         </div>
       </section>
 
-      {/* Features */}
-      <section className="py-16 bg-white">
+      {/* Features - Modern Icon Grid */}
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="text-4xl mb-4">🚚</div>
-              <h3 className="font-bold text-lg mb-2">Free Shipping</h3>
-              <p className="text-gray-600">On orders over $50</p>
-            </div>
-            <div className="text-center">
-              <div className="text-4xl mb-4">🔒</div>
-              <h3 className="font-bold text-lg mb-2">Secure Payment</h3>
-              <p className="text-gray-600">100% secure transactions</p>
-            </div>
-            <div className="text-center">
-              <div className="text-4xl mb-4">↩️</div>
-              <h3 className="font-bold text-lg mb-2">Easy Returns</h3>
-              <p className="text-gray-600">30-day return policy</p>
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            {[
+              { icon: '🚚', title: 'Free Shipping', desc: 'On all orders over $50', color: 'from-blue-500 to-cyan-500' },
+              { icon: '🔒', title: 'Secure Payment', desc: '100% protected transactions', color: 'from-purple-500 to-pink-500' },
+              { icon: '↩️', title: 'Easy Returns', desc: 'Hassle-free 30-day returns', color: 'from-orange-500 to-red-500' }
+            ].map((feature, index) => (
+              <div
+                key={index}
+                className="group relative bg-gradient-to-br from-slate-50 to-white rounded-2xl p-8 text-center hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:-translate-y-2"
+              >
+                <div className={`absolute inset-0 bg-gradient-to-br ${feature.color} opacity-0 group-hover:opacity-5 rounded-2xl transition-opacity duration-300`}></div>
+                <div className="text-6xl mb-4 group-hover:scale-110 transition-transform duration-300">
+                  {feature.icon}
+                </div>
+                <h3 className="font-bold text-xl mb-2 text-gray-900">{feature.title}</h3>
+                <p className="text-gray-600">{feature.desc}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
