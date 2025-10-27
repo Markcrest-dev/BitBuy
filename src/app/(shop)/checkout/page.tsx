@@ -20,7 +20,7 @@ export default function CheckoutPage() {
     city: '',
     state: '',
     zipCode: '',
-    country: 'United States',
+    country: 'Nigeria',
   })
 
   const [paymentInfo, setPaymentInfo] = useState({
@@ -38,19 +38,25 @@ export default function CheckoutPage() {
   // Redirect if cart is empty
   if (items.length === 0) {
     return (
-      <div className="container mx-auto px-4 py-16">
-        <div className="max-w-2xl mx-auto text-center">
-          <div className="text-6xl mb-4">🛒</div>
-          <h1 className="text-3xl font-bold text-gray-900 mb-4">Your cart is empty</h1>
-          <p className="text-gray-600 mb-8">
-            Please add items to your cart before proceeding to checkout.
-          </p>
-          <Link
-            href="/products"
-            className="inline-block bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition"
-          >
-            Continue Shopping
-          </Link>
+      <div className="min-h-screen bg-gradient-to-b from-amber-50 via-white to-amber-50">
+        <div className="container mx-auto px-4 py-16">
+          <div className="max-w-2xl mx-auto text-center">
+            <div className="w-32 h-32 mx-auto mb-8 rounded-full bg-gradient-to-br from-amber-100 to-yellow-100 flex items-center justify-center">
+              <svg className="w-16 h-16 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+              </svg>
+            </div>
+            <h1 className="text-3xl font-bold text-gray-900 mb-4">Your cart is empty</h1>
+            <p className="text-gray-600 mb-8">
+              Please add items to your cart before proceeding to checkout.
+            </p>
+            <Link
+              href="/products"
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-amber-600 to-yellow-600 text-white px-8 py-3 rounded-xl font-bold hover:from-amber-700 hover:to-yellow-700 transition-all shadow-lg hover:shadow-xl hover:scale-105"
+            >
+              Continue Shopping
+            </Link>
+          </div>
         </div>
       </div>
     )
@@ -105,29 +111,30 @@ export default function CheckoutPage() {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      {/* Breadcrumb */}
-      <nav className="flex mb-6 text-sm text-gray-600">
-        <Link href="/" className="hover:text-blue-600">
-          Home
-        </Link>
-        <span className="mx-2">/</span>
-        <Link href="/cart" className="hover:text-blue-600">
-          Cart
-        </Link>
-        <span className="mx-2">/</span>
-        <span className="text-gray-900">Checkout</span>
-      </nav>
+    <div className="min-h-screen bg-gradient-to-b from-amber-50 via-white to-amber-50">
+      <div className="container mx-auto px-4 py-8">
+        {/* Breadcrumb */}
+        <nav className="flex mb-6 text-sm text-gray-600">
+          <Link href="/" className="hover:text-amber-600 transition-colors">
+            Home
+          </Link>
+          <span className="mx-2 text-amber-600">/</span>
+          <Link href="/cart" className="hover:text-amber-600 transition-colors">
+            Cart
+          </Link>
+          <span className="mx-2 text-amber-600">/</span>
+          <span className="text-gray-900 font-medium">Checkout</span>
+        </nav>
 
-      <h1 className="text-3xl font-bold mb-8">Checkout</h1>
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 bg-gradient-to-r from-amber-600 to-yellow-600 bg-clip-text text-transparent">Checkout</h1>
 
       <form onSubmit={handleSubmit}>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Checkout Form */}
           <div className="lg:col-span-2 space-y-8">
             {/* Shipping Information */}
-            <div className="bg-white rounded-lg shadow-sm p-6">
-              <h2 className="text-xl font-bold mb-4">Shipping Information</h2>
+            <div className="bg-white rounded-2xl shadow-xl p-6 sm:p-8 border-2 border-amber-100">
+              <h2 className="text-xl sm:text-2xl font-bold mb-6 text-gray-900">Shipping Information</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 mb-1">
@@ -137,7 +144,7 @@ export default function CheckoutPage() {
                     type="text"
                     id="firstName"
                     required
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-4 py-2.5 border-2 border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition-all"
                     value={shippingInfo.firstName}
                     onChange={(e) => setShippingInfo({ ...shippingInfo, firstName: e.target.value })}
                   />
@@ -150,7 +157,7 @@ export default function CheckoutPage() {
                     type="text"
                     id="lastName"
                     required
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-4 py-2.5 border-2 border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition-all"
                     value={shippingInfo.lastName}
                     onChange={(e) => setShippingInfo({ ...shippingInfo, lastName: e.target.value })}
                   />
@@ -163,7 +170,7 @@ export default function CheckoutPage() {
                     type="email"
                     id="email"
                     required
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-4 py-2.5 border-2 border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition-all"
                     value={shippingInfo.email}
                     onChange={(e) => setShippingInfo({ ...shippingInfo, email: e.target.value })}
                   />
@@ -176,7 +183,7 @@ export default function CheckoutPage() {
                     type="tel"
                     id="phone"
                     required
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-4 py-2.5 border-2 border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition-all"
                     value={shippingInfo.phone}
                     onChange={(e) => setShippingInfo({ ...shippingInfo, phone: e.target.value })}
                   />
@@ -189,7 +196,7 @@ export default function CheckoutPage() {
                     type="text"
                     id="address"
                     required
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-4 py-2.5 border-2 border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition-all"
                     value={shippingInfo.address}
                     onChange={(e) => setShippingInfo({ ...shippingInfo, address: e.target.value })}
                   />
@@ -202,7 +209,7 @@ export default function CheckoutPage() {
                     type="text"
                     id="city"
                     required
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-4 py-2.5 border-2 border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition-all"
                     value={shippingInfo.city}
                     onChange={(e) => setShippingInfo({ ...shippingInfo, city: e.target.value })}
                   />
@@ -215,7 +222,7 @@ export default function CheckoutPage() {
                     type="text"
                     id="state"
                     required
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-4 py-2.5 border-2 border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition-all"
                     value={shippingInfo.state}
                     onChange={(e) => setShippingInfo({ ...shippingInfo, state: e.target.value })}
                   />
@@ -228,7 +235,7 @@ export default function CheckoutPage() {
                     type="text"
                     id="zipCode"
                     required
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-4 py-2.5 border-2 border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition-all"
                     value={shippingInfo.zipCode}
                     onChange={(e) => setShippingInfo({ ...shippingInfo, zipCode: e.target.value })}
                   />
@@ -240,22 +247,26 @@ export default function CheckoutPage() {
                   <select
                     id="country"
                     required
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-4 py-2.5 border-2 border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition-all"
                     value={shippingInfo.country}
                     onChange={(e) => setShippingInfo({ ...shippingInfo, country: e.target.value })}
                   >
+                    <option>Nigeria</option>
                     <option>United States</option>
                     <option>Canada</option>
                     <option>United Kingdom</option>
                     <option>Australia</option>
+                    <option>Ghana</option>
+                    <option>Kenya</option>
+                    <option>South Africa</option>
                   </select>
                 </div>
               </div>
             </div>
 
             {/* Payment Information */}
-            <div className="bg-white rounded-lg shadow-sm p-6">
-              <h2 className="text-xl font-bold mb-4">Payment Information</h2>
+            <div className="bg-white rounded-2xl shadow-xl p-6 sm:p-8 border-2 border-amber-100">
+              <h2 className="text-xl sm:text-2xl font-bold mb-6 text-gray-900">Payment Information</h2>
               <div className="space-y-4">
                 <div>
                   <label htmlFor="cardName" className="block text-sm font-medium text-gray-700 mb-1">
@@ -266,7 +277,7 @@ export default function CheckoutPage() {
                     id="cardName"
                     required
                     placeholder="John Doe"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-4 py-2.5 border-2 border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition-all"
                     value={paymentInfo.cardName}
                     onChange={(e) => setPaymentInfo({ ...paymentInfo, cardName: e.target.value })}
                   />
@@ -281,7 +292,7 @@ export default function CheckoutPage() {
                     required
                     placeholder="1234 5678 9012 3456"
                     maxLength={19}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-4 py-2.5 border-2 border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition-all"
                     value={paymentInfo.cardNumber}
                     onChange={(e) => {
                       const value = e.target.value.replace(/\s/g, '')
@@ -301,7 +312,7 @@ export default function CheckoutPage() {
                       required
                       placeholder="MM/YY"
                       maxLength={5}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-4 py-2.5 border-2 border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition-all"
                       value={paymentInfo.expiryDate}
                       onChange={(e) => {
                         let value = e.target.value.replace(/\D/g, '')
@@ -322,16 +333,21 @@ export default function CheckoutPage() {
                       required
                       placeholder="123"
                       maxLength={3}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-4 py-2.5 border-2 border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition-all"
                       value={paymentInfo.cvv}
                       onChange={(e) => setPaymentInfo({ ...paymentInfo, cvv: e.target.value.replace(/\D/g, '') })}
                     />
                   </div>
                 </div>
-                <div className="mt-4 p-4 bg-blue-50 rounded-lg">
-                  <p className="text-sm text-blue-900">
-                    🔒 Your payment information is encrypted and secure. We never store your full card details.
-                  </p>
+                <div className="mt-6 p-4 bg-gradient-to-r from-amber-50 to-yellow-50 rounded-xl border-2 border-amber-200">
+                  <div className="flex items-start gap-3">
+                    <svg className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                    </svg>
+                    <p className="text-sm text-gray-700 font-medium">
+                      Your payment information is encrypted and secure. We never store your full card details.
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -339,8 +355,8 @@ export default function CheckoutPage() {
 
           {/* Order Summary */}
           <div className="lg:col-span-1">
-            <div className="bg-white rounded-lg shadow-sm p-6 sticky top-4">
-              <h2 className="text-xl font-bold mb-4">Order Summary</h2>
+            <div className="bg-gradient-to-br from-white to-amber-50 rounded-2xl shadow-xl p-6 sm:p-8 sticky top-4 border-2 border-amber-100">
+              <h2 className="text-xl sm:text-2xl font-bold mb-6 text-gray-900">Order Summary</h2>
 
               {/* Items */}
               <div className="space-y-3 mb-4 max-h-60 overflow-y-auto">
@@ -360,37 +376,37 @@ export default function CheckoutPage() {
                     <div className="flex-1 min-w-0">
                       <p className="text-sm font-medium text-gray-900 truncate">{item.name}</p>
                       <p className="text-xs text-gray-500">Qty: {item.quantity}</p>
-                      <p className="text-sm font-semibold text-blue-600">{formatPrice(item.price * item.quantity)}</p>
+                      <p className="text-sm font-bold bg-gradient-to-r from-amber-600 to-yellow-600 bg-clip-text text-transparent">{formatPrice(item.price * item.quantity)}</p>
                     </div>
                   </div>
                 ))}
               </div>
 
-              <div className="border-t pt-4 space-y-2">
-                <div className="flex justify-between text-sm text-gray-600">
-                  <span>Subtotal ({getTotalItems()} items)</span>
-                  <span>{formatPrice(subtotal)}</span>
+              <div className="border-t-2 border-amber-200 pt-4 space-y-3">
+                <div className="flex justify-between text-sm text-gray-700">
+                  <span className="font-medium">Subtotal ({getTotalItems()} items)</span>
+                  <span className="font-bold">{formatPrice(subtotal)}</span>
                 </div>
-                <div className="flex justify-between text-sm text-gray-600">
-                  <span>Shipping</span>
-                  <span className={shipping === 0 ? 'text-green-600 font-semibold' : ''}>
+                <div className="flex justify-between text-sm text-gray-700">
+                  <span className="font-medium">Shipping</span>
+                  <span className={shipping === 0 ? 'text-green-600 font-bold' : 'font-bold'}>
                     {shipping === 0 ? 'FREE' : formatPrice(shipping)}
                   </span>
                 </div>
-                <div className="flex justify-between text-sm text-gray-600">
-                  <span>Tax (10%)</span>
-                  <span>{formatPrice(tax)}</span>
+                <div className="flex justify-between text-sm text-gray-700">
+                  <span className="font-medium">Tax (10%)</span>
+                  <span className="font-bold">{formatPrice(tax)}</span>
                 </div>
-                <div className="border-t pt-2 flex justify-between font-bold text-lg">
+                <div className="border-t-2 border-amber-200 pt-3 flex justify-between font-bold text-xl">
                   <span>Total</span>
-                  <span className="text-blue-600">{formatPrice(total)}</span>
+                  <span className="bg-gradient-to-r from-amber-600 to-yellow-600 bg-clip-text text-transparent">{formatPrice(total)}</span>
                 </div>
               </div>
 
               <button
                 type="submit"
                 disabled={isProcessing}
-                className="w-full mt-6 bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full mt-6 bg-gradient-to-r from-amber-600 to-yellow-600 text-white py-4 rounded-xl font-bold text-lg hover:from-amber-700 hover:to-yellow-700 transition-all shadow-lg hover:shadow-xl hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
               >
                 {isProcessing ? (
                   <span className="flex items-center justify-center">
@@ -405,13 +421,14 @@ export default function CheckoutPage() {
                 )}
               </button>
 
-              <p className="text-xs text-gray-500 text-center mt-4">
+              <p className="text-xs text-gray-600 text-center mt-4 font-medium">
                 By placing your order, you agree to our Terms of Service and Privacy Policy
               </p>
             </div>
           </div>
         </div>
       </form>
+      </div>
     </div>
   )
 }

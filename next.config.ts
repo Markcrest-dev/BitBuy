@@ -38,9 +38,6 @@ const nextConfig: NextConfig = {
 
   // Generate ETags for caching
   generateEtags: true,
-
-  // Optimize fonts
-  optimizeFonts: true,
 };
 
 export default nextConfig;

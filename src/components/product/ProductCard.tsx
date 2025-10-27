@@ -5,7 +5,7 @@ import Image from 'next/image'
 import { ProductWithCategory } from '@/types'
 import { useCartStore } from '@/store/cartStore'
 import { useCurrency } from '@/hooks/useCurrency'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 interface ProductCardProps {
   product: ProductWithCategory
@@ -15,6 +15,11 @@ export default function ProductCard({ product }: ProductCardProps) {
   const addItem = useCartStore((state) => state.addItem)
   const { formatPrice } = useCurrency()
   const [imageError, setImageError] = useState(false)
+  const [isClient, setIsClient] = useState(false)
+
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
 
   const discountPercentage = product.comparePrice
     ? Math.round(((product.comparePrice - product.price) / product.comparePrice) * 100)
@@ -103,11 +108,11 @@ export default function ProductCard({ product }: ProductCardProps) {
         {/* Price - Prominent Display */}
         <div className="flex items-baseline gap-2 mb-4">
           <span className="text-2xl font-bold text-gray-900">
-            {formatPrice(product.price)}
+            {isClient ? formatPrice(product.price) : `$${product.price.toFixed(2)}`}
           </span>
           {product.comparePrice && (
             <span className="text-sm text-gray-400 line-through font-medium">
-              {formatPrice(product.comparePrice)}
+              {isClient ? formatPrice(product.comparePrice) : `$${product.comparePrice.toFixed(2)}`}
             </span>
           )}
         </div>

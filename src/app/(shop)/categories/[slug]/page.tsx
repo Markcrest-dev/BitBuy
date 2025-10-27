@@ -6,15 +6,16 @@ import { auth } from '@/lib/auth'
 import { redirect } from 'next/navigation'
 
 type Props = {
-  params: {
+  params: Promise<{
     slug: string
-  }
+  }>
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params
   // Fetch the category to get its name
   const category = await prisma.category.findUnique({
-    where: { slug: params.slug },
+    where: { slug },
   })
 
   const categoryName = category?.name || 'Products'
@@ -32,9 +33,10 @@ export default async function CategoryPage({ params }: Props) {
     redirect('/landing')
   }
 
+  const { slug } = await params
   // Fetch the category by slug
   const category = await prisma.category.findUnique({
-    where: { slug: params.slug },
+    where: { slug },
   })
 
   if (!category) {

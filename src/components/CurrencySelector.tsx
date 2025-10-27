@@ -29,8 +29,8 @@ export default function CurrencySelector() {
 
   if (loading || currencies.length === 0) {
     return (
-      <div className="flex items-center gap-1 px-3 py-1.5 bg-gray-100 rounded-lg text-sm">
-        <span className="font-medium">{currentCurrency.code}</span>
+      <div className="flex items-center gap-1 px-3 py-1.5 bg-white/10 backdrop-blur-sm rounded-lg text-sm">
+        <span className="font-medium text-white">{currentCurrency.code}</span>
       </div>
     )
   }
@@ -39,9 +39,9 @@ export default function CurrencySelector() {
     <div className="relative">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 px-3 py-1.5 bg-white border-2 border-gray-200 rounded-lg hover:border-amber-300 transition-all text-sm font-medium"
+        className="flex items-center gap-2 px-3 py-1.5 bg-white/10 backdrop-blur-sm border-2 border-white/20 rounded-lg hover:bg-white/20 hover:border-white/40 transition-all text-sm font-medium text-white"
       >
-        <svg className="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg className="w-4 h-4 text-yellow-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
         </svg>
         <span>{currentCurrency.code}</span>
