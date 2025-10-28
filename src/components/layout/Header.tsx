@@ -13,11 +13,21 @@ export default function Header() {
   const [isCategoriesOpen, setIsCategoriesOpen] = useState(false)
   const [isClient, setIsClient] = useState(false)
   const getTotalItems = useCartStore((state) => state.getTotalItems)
+  const setUserId = useCartStore((state) => state.setUserId)
   const { data: session } = useSession()
 
   useEffect(() => {
     setIsClient(true)
   }, [])
+
+  // Update cart userId when session changes
+  useEffect(() => {
+    if (session?.user?.id) {
+      setUserId(session.user.id)
+    } else {
+      setUserId(null)
+    }
+  }, [session?.user?.id, setUserId])
 
   const categories = [
     { name: 'Electronics', href: '/categories/electronics', icon: '💻' },
@@ -38,9 +48,6 @@ export default function Header() {
 
             {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center gap-6 flex-1 justify-center">
-              <Link href="/landing" className="text-white hover:text-amber-400 transition-colors font-medium text-sm">
-                Home
-              </Link>
               <Link href="/products" className="text-white hover:text-amber-400 transition-colors font-medium text-sm">
                 All Products
               </Link>
@@ -89,7 +96,7 @@ export default function Header() {
               {session ? (
                 <div className="hidden md:flex items-center gap-3">
                   <Link
-                    href="/account"
+                    href="/dashboard"
                     className="flex items-center gap-2 text-white hover:text-amber-400 transition-colors"
                   >
                     <UserIcon className="w-5 h-5" />
@@ -211,7 +218,7 @@ export default function Header() {
             {session && (
               <>
                 <Link
-                  href="/account"
+                  href="/dashboard"
                   className="block py-2 px-4 text-gray-700 hover:bg-amber-50 hover:text-amber-600 rounded-lg transition-colors font-medium"
                   onClick={() => setIsMenuOpen(false)}
                 >

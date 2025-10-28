@@ -19,8 +19,8 @@ export default async function DealsPage() {
   // Fetch products with discounts (price less than compare price)
   const products = await prisma.product.findMany({
     where: {
-      isActive: true,
-      compareAtPrice: {
+      active: true,
+      comparePrice: {
         not: null,
       },
     },
@@ -37,16 +37,16 @@ export default async function DealsPage() {
     },
   })
 
-  // Filter products where compareAtPrice > price (actual deals)
+  // Filter products where comparePrice > price (actual deals)
   const dealsProducts = products.filter(
-    (product) => product.compareAtPrice && product.compareAtPrice > product.price
+    (product) => product.comparePrice && product.comparePrice > product.price
   )
 
   // Calculate average ratings and discount percentage
   const productsWithRatings = dealsProducts.map((product) => {
-    const discountPercentage = product.compareAtPrice
+    const discountPercentage = product.comparePrice
       ? Math.round(
-          ((product.compareAtPrice - product.price) / product.compareAtPrice) * 100
+          ((product.comparePrice - product.price) / product.comparePrice) * 100
         )
       : 0
 
@@ -151,7 +151,7 @@ export default async function DealsPage() {
                 </h2>
                 <div className="flex items-center gap-4">
                   <label className="text-sm font-medium text-gray-700">Sort by:</label>
-                  <select className="border-2 border-gray-200 rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent">
+                  <select className="border-2 border-gray-200 rounded-lg px-4 py-2 text-sm text-gray-900 bg-white focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent">
                     <option>Biggest Discount</option>
                     <option>Price: Low to High</option>
                     <option>Price: High to Low</option>

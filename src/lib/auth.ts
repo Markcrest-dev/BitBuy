@@ -60,6 +60,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           email: user.email,
           name: user.name,
           role: user.role,
+          phone: user.phone,
+          createdAt: user.createdAt.toISOString(),
         }
       },
     }),
@@ -69,6 +71,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       if (user) {
         token.id = user.id
         token.role = (user as any).role
+        token.phone = (user as any).phone
+        token.createdAt = (user as any).createdAt
       }
       return token
     },
@@ -76,6 +80,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       if (token && session.user) {
         session.user.id = token.id as string
         session.user.role = token.role as string
+        session.user.phone = token.phone as string
+        session.user.createdAt = token.createdAt as string
       }
       return session
     },

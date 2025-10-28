@@ -17,7 +17,7 @@ export default function SortSelector() {
     <div className="flex items-center gap-2">
       <span className="text-sm text-gray-600">Sort by:</span>
       <select
-        className="border border-gray-300 rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+        className="border border-gray-300 rounded-lg px-4 py-2 text-sm text-gray-900 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
         value={currentSort}
         onChange={(e) => handleSortChange(e.target.value)}
       >

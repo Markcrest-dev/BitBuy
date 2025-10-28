@@ -1,21 +1,60 @@
 'use client'
 
 import Link from 'next/link'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useSession, signOut } from 'next-auth/react'
+import { useRouter } from 'next/navigation'
 
 export default function DashboardPage() {
-  const [user] = useState({
-    name: 'John Doe',
-    email: 'john@example.com',
-    phone: '+1 (555) 123-4567',
-    memberSince: 'January 2025',
+  const { data: session, status } = useSession()
+  const router = useRouter()
+  const [stats, setStats] = useState({
+    totalOrders: 0,
+    activeOrders: 0,
+    totalSpent: 0,
+    savedItems: 0,
   })
 
-  const [stats] = useState({
-    totalOrders: 12,
-    activeOrders: 2,
-    totalSpent: 1245.67,
-    savedItems: 5,
+  // Redirect to login if not authenticated
+  useEffect(() => {
+    if (status === 'unauthenticated') {
+      router.push('/login')
+    }
+  }, [status, router])
+
+  // Fetch user stats
+  useEffect(() => {
+    if (session?.user) {
+      // TODO: Fetch real stats from API
+      // For now, using placeholder data
+      setStats({
+        totalOrders: 0,
+        activeOrders: 0,
+        totalSpent: 0,
+        savedItems: 0,
+      })
+    }
+  }, [session])
+
+  if (status === 'loading') {
+    return (
+      <div className="min-h-screen bg-gradient-to-b from-amber-50 to-white flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-amber-600 mx-auto"></div>
+          <p className="mt-4 text-gray-600">Loading...</p>
+        </div>
+      </div>
+    )
+  }
+
+  if (!session?.user) {
+    return null
+  }
+
+  const user = session.user
+  const memberSince = new Date(session.user.createdAt || Date.now()).toLocaleDateString('en-US', {
+    month: 'long',
+    year: 'numeric',
   })
 
   return (
@@ -45,29 +84,32 @@ export default function DashboardPage() {
               </Link>
               <Link
                 href="/dashboard/orders"
-                className="block px-4 py-3 rounded-lg hover:bg-amber-50 transition"
+                className="block px-4 py-3 rounded-lg text-gray-700 hover:bg-amber-50 hover:text-amber-700 transition font-medium"
               >
                 Orders
               </Link>
               <Link
                 href="/dashboard/addresses"
-                className="block px-4 py-3 rounded-lg hover:bg-amber-50 transition"
+                className="block px-4 py-3 rounded-lg text-gray-700 hover:bg-amber-50 hover:text-amber-700 transition font-medium"
               >
                 Addresses
               </Link>
               <Link
                 href="/dashboard/wishlist"
-                className="block px-4 py-3 rounded-lg hover:bg-amber-50 transition"
+                className="block px-4 py-3 rounded-lg text-gray-700 hover:bg-amber-50 hover:text-amber-700 transition font-medium"
               >
                 Wishlist
               </Link>
               <Link
                 href="/dashboard/profile"
-                className="block px-4 py-3 rounded-lg hover:bg-amber-50 transition"
+                className="block px-4 py-3 rounded-lg text-gray-700 hover:bg-amber-50 hover:text-amber-700 transition font-medium"
               >
                 Profile Settings
               </Link>
-              <button className="w-full text-left px-4 py-3 rounded-lg hover:bg-red-50 hover:text-red-600 transition">
+              <button
+                onClick={() => signOut({ callbackUrl: '/landing' })}
+                className="w-full text-left px-4 py-3 rounded-lg text-gray-700 hover:bg-red-50 hover:text-red-600 transition font-medium"
+              >
                 Logout
               </button>
             </nav>
@@ -78,8 +120,9 @@ export default function DashboardPage() {
         <div className="lg:col-span-3">
           {/* Welcome Section */}
           <div className="bg-gradient-to-r from-amber-600 via-yellow-600 to-amber-700 text-white rounded-xl p-6 mb-8 shadow-lg">
-            <h2 className="text-2xl font-bold mb-2">Welcome back, {user.name}!</h2>
-            <p className="text-yellow-100">Member since {user.memberSince}</p>
+            <h2 className="text-2xl font-bold mb-2">Welcome back, {user.name || 'User'}!</h2>
+            <p className="text-yellow-100">Member since {memberSince}</p>
+            <p className="text-yellow-100 text-sm mt-1">{user.email}</p>
           </div>
 
           {/* Stats */}

@@ -6,15 +6,26 @@ import { useCartStore } from '@/store/cartStore'
 import { useCurrency } from '@/hooks/useCurrency'
 import { TrashIcon, ShoppingBagIcon, TruckIcon, ShieldCheckIcon, ArrowLeftIcon } from '@heroicons/react/24/outline'
 import { useState, useEffect } from 'react'
+import { useSession } from 'next-auth/react'
 
 export default function CartPage() {
-  const { items, updateQuantity, removeItem, getTotalPrice, getTotalItems } = useCartStore()
+  const { items, updateQuantity, removeItem, getTotalPrice, getTotalItems, setUserId } = useCartStore()
   const { formatPrice } = useCurrency()
   const [isClient, setIsClient] = useState(false)
+  const { data: session } = useSession()
 
   useEffect(() => {
     setIsClient(true)
   }, [])
+
+  // Ensure cart is loaded for the current user
+  useEffect(() => {
+    if (session?.user?.id) {
+      setUserId(session.user.id)
+    } else {
+      setUserId(null)
+    }
+  }, [session?.user?.id, setUserId])
 
   const subtotal = getTotalPrice()
   const shipping = subtotal > 50 ? 0 : 5.99

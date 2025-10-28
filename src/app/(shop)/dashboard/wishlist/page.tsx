@@ -59,41 +59,42 @@ export default function WishlistPage() {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      {/* Breadcrumb */}
-      <nav className="flex mb-6 text-sm text-gray-600">
-        <Link href="/" className="hover:text-blue-600">
-          Home
-        </Link>
-        <span className="mx-2">/</span>
-        <Link href="/dashboard" className="hover:text-blue-600">
-          Dashboard
-        </Link>
-        <span className="mx-2">/</span>
-        <span className="text-gray-900">Wishlist</span>
-      </nav>
+    <div className="min-h-screen bg-gradient-to-b from-amber-50 via-white to-amber-50">
+      <div className="container mx-auto px-4 py-8">
+        {/* Breadcrumb */}
+        <nav className="flex mb-6 text-sm text-gray-600">
+          <Link href="/" className="hover:text-amber-600 transition-colors">
+            Home
+          </Link>
+          <span className="mx-2 text-amber-600">/</span>
+          <Link href="/dashboard" className="hover:text-amber-600 transition-colors">
+            Dashboard
+          </Link>
+          <span className="mx-2 text-amber-600">/</span>
+          <span className="text-gray-900 font-medium">Wishlist</span>
+        </nav>
 
-      <div className="max-w-6xl">
-        <h1 className="text-3xl font-bold mb-6">My Wishlist ({wishlist.length})</h1>
+        <div className="max-w-6xl">
+          <h1 className="text-3xl font-bold mb-6 bg-gradient-to-r from-amber-600 to-yellow-600 bg-clip-text text-transparent">My Wishlist ({wishlist.length})</h1>
 
-        {wishlist.length === 0 ? (
-          <div className="bg-white rounded-lg shadow-sm p-12 text-center">
-            <div className="text-6xl mb-4">💝</div>
-            <h2 className="text-2xl font-bold mb-2">Your wishlist is empty</h2>
-            <p className="text-gray-600 mb-6">
-              Save your favorite items to your wishlist to buy them later
-            </p>
-            <Link
-              href="/products"
-              className="inline-block px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
-            >
-              Continue Shopping
-            </Link>
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {wishlist.map((item) => (
-              <div key={item.id} className="bg-white rounded-lg shadow-sm overflow-hidden group">
+          {wishlist.length === 0 ? (
+            <div className="bg-gradient-to-br from-white to-amber-50 rounded-2xl shadow-xl p-12 text-center border-2 border-amber-100">
+              <div className="text-6xl mb-4">💝</div>
+              <h2 className="text-2xl font-bold mb-2 text-gray-900">Your wishlist is empty</h2>
+              <p className="text-gray-600 mb-6">
+                Save your favorite items to your wishlist to buy them later
+              </p>
+              <Link
+                href="/products"
+                className="inline-block px-6 py-3 bg-gradient-to-r from-amber-600 to-yellow-600 text-white rounded-lg hover:from-amber-700 hover:to-yellow-700 transition shadow-md font-medium"
+              >
+                Continue Shopping
+              </Link>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {wishlist.map((item) => (
+                <div key={item.id} className="bg-gradient-to-br from-white to-amber-50 rounded-2xl shadow-lg hover:shadow-xl transition-shadow overflow-hidden group border-2 border-amber-100">
                 <Link href={`/products/${item.slug}`} className="block">
                   <div className="relative aspect-square bg-gray-100">
                     {item.image ? (
@@ -140,49 +141,50 @@ export default function WishlistPage() {
                   </div>
                 </Link>
 
-                <div className="p-4">
-                  <Link
-                    href={`/products/${item.slug}`}
-                    className="font-semibold text-gray-900 hover:text-blue-600 line-clamp-2 mb-2 block"
-                  >
-                    {item.name}
-                  </Link>
+                  <div className="p-4">
+                    <Link
+                      href={`/products/${item.slug}`}
+                      className="font-semibold text-gray-900 hover:text-amber-700 line-clamp-2 mb-2 block transition-colors"
+                    >
+                      {item.name}
+                    </Link>
 
-                  <div className="flex items-center gap-2 mb-3">
-                    <span className="text-lg font-bold text-blue-600">
-                      {formatPrice(item.price)}
-                    </span>
-                    {item.comparePrice && (
-                      <span className="text-sm text-gray-500 line-through">
-                        {formatPrice(item.comparePrice)}
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className="text-lg font-bold bg-gradient-to-r from-amber-600 to-yellow-600 bg-clip-text text-transparent">
+                        {formatPrice(item.price)}
                       </span>
-                    )}
+                      {item.comparePrice && (
+                        <span className="text-sm text-gray-500 line-through">
+                          {formatPrice(item.comparePrice)}
+                        </span>
+                      )}
+                    </div>
+
+                    <button
+                      onClick={() => handleAddToCart(item)}
+                      disabled={!item.inStock}
+                      className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-gradient-to-r from-amber-600 to-yellow-600 text-white rounded-lg hover:from-amber-700 hover:to-yellow-700 transition shadow-md font-medium disabled:from-gray-300 disabled:to-gray-300 disabled:cursor-not-allowed"
+                    >
+                      <ShoppingCartIcon className="w-5 h-5" />
+                      {item.inStock ? 'Add to Cart' : 'Out of Stock'}
+                    </button>
                   </div>
-
-                  <button
-                    onClick={() => handleAddToCart(item)}
-                    disabled={!item.inStock}
-                    className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition disabled:bg-gray-300 disabled:cursor-not-allowed"
-                  >
-                    <ShoppingCartIcon className="w-5 h-5" />
-                    {item.inStock ? 'Add to Cart' : 'Out of Stock'}
-                  </button>
                 </div>
-              </div>
-            ))}
-          </div>
-        )}
+              ))}
+            </div>
+          )}
 
-        {wishlist.length > 0 && (
-          <div className="mt-6 text-center">
-            <Link
-              href="/products"
-              className="inline-block text-blue-600 hover:text-blue-700 font-medium"
-            >
-              Continue Shopping →
-            </Link>
-          </div>
-        )}
+          {wishlist.length > 0 && (
+            <div className="mt-6 text-center">
+              <Link
+                href="/products"
+                className="inline-block text-amber-700 hover:text-amber-800 font-bold transition-colors"
+              >
+                Continue Shopping →
+              </Link>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   )

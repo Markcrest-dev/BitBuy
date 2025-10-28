@@ -47,7 +47,7 @@ export default async function CategoryPage({ params }: Props) {
   const products = await prisma.product.findMany({
     where: {
       categoryId: category.id,
-      isActive: true,
+      active: true,
     },
     include: {
       category: true,
@@ -120,7 +120,7 @@ export default async function CategoryPage({ params }: Props) {
                 </h2>
                 <div className="flex items-center gap-4">
                   <label className="text-sm font-medium text-gray-700">Sort by:</label>
-                  <select className="border-2 border-gray-200 rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent">
+                  <select className="border-2 border-gray-200 rounded-lg px-4 py-2 text-sm text-gray-900 bg-white focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent">
                     <option>Newest First</option>
                     <option>Price: Low to High</option>
                     <option>Price: High to Low</option>

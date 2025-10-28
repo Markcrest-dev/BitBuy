@@ -1,8 +1,7 @@
 import { NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import bcrypt from 'bcryptjs'
-import { sendEmail } from '@/lib/email'
-import WelcomeEmail from '@/emails/WelcomeEmail'
+import { sendWelcomeEmail } from '@/lib/email'
 
 export async function POST(request: Request) {
   try {
@@ -50,11 +49,7 @@ export async function POST(request: Request) {
     })
 
     // Send welcome email (don't wait for it to avoid blocking the response)
-    sendEmail(
-      email,
-      'Welcome to BitBuy!',
-      WelcomeEmail({ name, email })
-    ).catch((error) => {
+    sendWelcomeEmail(email, name).catch((error) => {
       console.error('Failed to send welcome email:', error)
       // Don't fail the registration if email fails
     })
