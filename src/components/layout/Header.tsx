@@ -106,8 +106,6 @@ export default function Header() {
                     onClick={() => signOut()}
                     className="flex items-center gap-2 text-white hover:text-red-400 transition-colors"
                   >
-                    <ArrowRightOnRectangleIcon className="w-5 h-5" />
-                    <span className="text-sm font-medium hidden lg:inline">Sign Out</span>
                   </button>
                 </div>
               ) : (
