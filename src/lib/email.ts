@@ -53,7 +53,7 @@ export async function sendWelcomeEmail(
   return sendEmail(
     email,
     'Welcome to BitBuy! 🎉',
-    WelcomeEmail({ name })
+    WelcomeEmail({ name, email })
   )
 }
 
@@ -108,10 +108,7 @@ export async function sendShippingNotificationEmail(shipmentData: {
   orderNumber: string
   trackingNumber: string
   carrier: string
-  items: Array<{
-    name: string
-    quantity: number
-  }>
+  estimatedDelivery?: string
   shippingAddress: {
     street: string
     city: string
@@ -120,6 +117,9 @@ export async function sendShippingNotificationEmail(shipmentData: {
     country: string
   }
 }) {
+  // Calculate estimated delivery if not provided (3-5 business days)
+  const estimatedDelivery = shipmentData.estimatedDelivery || new Date(Date.now() + 5 * 24 * 60 * 60 * 1000).toLocaleDateString()
+
   return sendEmail(
     shipmentData.email,
     `Your Order Has Shipped - ${shipmentData.orderNumber}`,
@@ -128,7 +128,7 @@ export async function sendShippingNotificationEmail(shipmentData: {
       customerName: shipmentData.name,
       trackingNumber: shipmentData.trackingNumber,
       carrier: shipmentData.carrier,
-      items: shipmentData.items,
+      estimatedDelivery,
       shippingAddress: shipmentData.shippingAddress,
     })
   )

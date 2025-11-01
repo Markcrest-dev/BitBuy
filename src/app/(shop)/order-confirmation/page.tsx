@@ -1,10 +1,10 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, Suspense } from 'react'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 
-export default function OrderConfirmationPage() {
+function OrderConfirmationContent() {
   const searchParams = useSearchParams()
   const orderId = searchParams.get('orderId') || 'N/A'
 
@@ -142,5 +142,19 @@ export default function OrderConfirmationPage() {
         </div>
       </div>
     </div>
+  )
+}
+
+export default function OrderConfirmationPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="container mx-auto px-4 py-16 flex justify-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+        </div>
+      }
+    >
+      <OrderConfirmationContent />
+    </Suspense>
   )
 }

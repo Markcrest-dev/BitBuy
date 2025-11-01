@@ -1,4 +1,6 @@
 import Link from 'next/link';
+import { redirect } from 'next/navigation';
+import { auth } from '@/lib/auth';
 import {
   ShoppingBagIcon,
   TruckIcon,
@@ -11,7 +13,14 @@ import {
   CheckCircleIcon
 } from '@heroicons/react/24/outline';
 
-export default function LandingPage() {
+export default async function LandingPage() {
+  // Check if user is authenticated
+  const session = await auth();
+
+  // Redirect authenticated users to the main shop page
+  if (session?.user) {
+    redirect('/');
+  }
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section - Luxurious Gold Theme */}
