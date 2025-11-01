@@ -26,9 +26,21 @@ export async function POST(request: NextRequest) {
     } = body
 
     // Validate required fields
-    if (!businessName || !businessEmail || !description || !address || !city || !country) {
+    if (!businessName || !businessEmail || !description || !country) {
       return NextResponse.json(
         { error: 'Please fill in all required fields' },
+        { status: 400 }
+      )
+    }
+
+    // Check if business email is already in use
+    const existingBusinessEmail = await prisma.vendor.findUnique({
+      where: { businessEmail },
+    })
+
+    if (existingBusinessEmail) {
+      return NextResponse.json(
+        { error: 'Business email is already registered' },
         { status: 400 }
       )
     }
@@ -51,12 +63,12 @@ export async function POST(request: NextRequest) {
         userId: session.user.id,
         businessName,
         businessEmail,
-        businessPhone,
+        businessPhone: businessPhone || null,
         description,
-        address,
-        city,
+        address: address || null,
+        city: city || null,
         country,
-        taxId,
+        taxId: taxId || null,
         status: 'PENDING',
       },
     })

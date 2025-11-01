@@ -3,6 +3,7 @@ import { headers } from 'next/headers'
 import Stripe from 'stripe'
 import { stripe } from '@/lib/stripe'
 import { createOrder, updateOrderStatus } from '@/lib/order-service'
+import { awardPurchasePoints } from '@/lib/loyalty'
 import { OrderStatus } from '@prisma/client'
 
 // Disable body parsing for webhook endpoints
@@ -105,6 +106,15 @@ export async function POST(req: NextRequest) {
         })
 
         console.log('Order created successfully:', order.orderNumber)
+
+        // Award loyalty points for the purchase
+        try {
+          await awardPurchasePoints(userId, order.subtotal, order.id)
+          console.log('Loyalty points awarded for order:', order.orderNumber)
+        } catch (loyaltyError) {
+          console.error('Failed to award loyalty points:', loyaltyError)
+          // Don't fail the webhook if loyalty points fail
+        }
 
         // Send order confirmation email
         try {

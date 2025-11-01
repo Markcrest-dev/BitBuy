@@ -31,7 +31,11 @@ const tierInfo = {
     border: 'border-amber-200',
     icon: '🥉',
     pointsRequired: 0,
-    benefits: ['1 point per $1 spent', 'Birthday bonus', 'Early sale access'],
+    benefits: [
+      '1 point per $1 spent',
+      'Birthday bonus: 50 points',
+      'Exclusive member-only sales'
+    ],
   },
   SILVER: {
     name: 'Silver',
@@ -40,7 +44,12 @@ const tierInfo = {
     border: 'border-gray-300',
     icon: '🥈',
     pointsRequired: 500,
-    benefits: ['1.5 points per $1 spent', 'Free shipping', 'Priority support'],
+    benefits: [
+      '1.25 points per $1 spent',
+      'Free shipping on orders over $50',
+      'Birthday bonus: 100 points',
+      'Early access to sales'
+    ],
   },
   GOLD: {
     name: 'Gold',
@@ -49,7 +58,13 @@ const tierInfo = {
     border: 'border-yellow-300',
     icon: '🥇',
     pointsRequired: 1500,
-    benefits: ['2 points per $1 spent', 'Exclusive discounts', 'VIP events'],
+    benefits: [
+      '1.5 points per $1 spent',
+      'Free shipping on all orders',
+      'Birthday bonus: 200 points',
+      'Priority customer support',
+      'Exclusive products access'
+    ],
   },
   PLATINUM: {
     name: 'Platinum',
@@ -57,8 +72,15 @@ const tierInfo = {
     bg: 'bg-purple-50',
     border: 'border-purple-300',
     icon: '💎',
-    pointsRequired: 5000,
-    benefits: ['3 points per $1 spent', 'Personal shopper', 'All perks'],
+    pointsRequired: 3000,
+    benefits: [
+      '2 points per $1 spent',
+      'Free express shipping',
+      'Birthday bonus: 500 points',
+      'VIP customer support',
+      'Exclusive platinum-only products',
+      'Special gifts and surprises'
+    ],
   },
 };
 
