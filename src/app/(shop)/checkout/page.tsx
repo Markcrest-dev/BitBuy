@@ -45,14 +45,15 @@ export default function CheckoutPage() {
         const response = await fetch('/api/addresses')
         if (response.ok) {
           const data = await response.json()
-          setAddresses(data)
+          const addressList = data.addresses || []
+          setAddresses(addressList)
 
           // Auto-select default address
-          const defaultAddr = data.find((addr: any) => addr.isDefault)
+          const defaultAddr = addressList.find((addr: any) => addr.isDefault)
           if (defaultAddr) {
             setSelectedAddress(defaultAddr.id)
-          } else if (data.length > 0) {
-            setSelectedAddress(data[0].id)
+          } else if (addressList.length > 0) {
+            setSelectedAddress(addressList[0].id)
           }
         }
       } catch (error) {
