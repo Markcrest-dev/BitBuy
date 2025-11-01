@@ -6,6 +6,7 @@ import { ProductWithCategory } from '@/types'
 import { useCartStore } from '@/store/cartStore'
 import { useCurrency } from '@/hooks/useCurrency'
 import { useState, useEffect } from 'react'
+import AddToWishlistButton from './AddToWishlistButton'
 
 interface ProductCardProps {
   product: ProductWithCategory
@@ -68,9 +69,14 @@ export default function ProductCard({ product }: ProductCardProps) {
           </div>
         )}
 
+        {/* Wishlist Button - Top Right */}
+        <div className="absolute top-3 right-3 z-10" onClick={(e) => e.preventDefault()}>
+          <AddToWishlistButton productId={product.id} size="md" />
+        </div>
+
         {/* Featured Badge - Premium Design */}
         {product.featured && (
-          <div className="absolute top-3 right-3 bg-gradient-to-r from-primary to-primary-light text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg backdrop-blur-sm">
+          <div className="absolute top-14 right-3 bg-gradient-to-r from-primary to-primary-light text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg backdrop-blur-sm">
             ⭐ Featured
           </div>
         )}
