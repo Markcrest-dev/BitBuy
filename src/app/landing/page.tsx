@@ -17,9 +17,9 @@ export default async function LandingPage() {
   // Check if user is authenticated
   const session = await auth();
 
-  // Redirect authenticated users to the main shop page
+  // Redirect authenticated users to the products page
   if (session?.user) {
-    redirect('/');
+    redirect('/products');
   }
   return (
     <div className="min-h-screen bg-white">
