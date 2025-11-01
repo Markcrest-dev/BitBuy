@@ -169,11 +169,7 @@ export default async function DealsPage() {
                       -{product.discountPercentage}% OFF
                     </div>
                     <ProductCard
-                      product={{
-                        ...product,
-                        averageRating: product.averageRating,
-                        reviewCount: product.reviewCount,
-                      }}
+                      product={product}
                     />
                   </div>
                 ))}

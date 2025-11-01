@@ -133,11 +133,7 @@ export default async function CategoryPage({ params }: Props) {
                 {productsWithRatings.map((product) => (
                   <ProductCard
                     key={product.id}
-                    product={{
-                      ...product,
-                      averageRating: product.averageRating,
-                      reviewCount: product.reviewCount,
-                    }}
+                    product={product}
                   />
                 ))}
               </div>

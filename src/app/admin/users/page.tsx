@@ -31,7 +31,7 @@ async function getUserStats() {
   const [totalUsers, adminCount, customerCount, recentUsers] = await Promise.all([
     prisma.user.count(),
     prisma.user.count({ where: { role: 'ADMIN' } }),
-    prisma.user.count({ where: { role: 'CUSTOMER' } }),
+    prisma.user.count({ where: { role: 'USER' } }),
     prisma.user.count({
       where: {
         createdAt: {
