@@ -4,22 +4,30 @@ import { prisma } from '@/lib/prisma'
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = process.env.NEXTAUTH_URL || 'http://localhost:3000'
 
-  // Get all active products
-  const products = await prisma.product.findMany({
-    where: { active: true },
-    select: {
-      slug: true,
-      updatedAt: true,
-    },
-  })
+  let products: Array<{ slug: string; updatedAt: Date }> = []
+  let categories: Array<{ slug: string; updatedAt: Date }> = []
 
-  // Get all categories
-  const categories = await prisma.category.findMany({
-    select: {
-      slug: true,
-      updatedAt: true,
-    },
-  })
+  try {
+    // Get all active products
+    products = await prisma.product.findMany({
+      where: { active: true },
+      select: {
+        slug: true,
+        updatedAt: true,
+      },
+    })
+
+    // Get all categories
+    categories = await prisma.category.findMany({
+      select: {
+        slug: true,
+        updatedAt: true,
+      },
+    })
+  } catch (error) {
+    console.error('Failed to fetch data for sitemap:', error)
+    // Return static pages only if database is unavailable
+  }
 
   // Static pages
   const staticPages = [
