@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
 import ReactQueryProvider from "@/providers/ReactQueryProvider";
 import SessionProvider from "@/providers/SessionProvider";
 import ToastManager from "@/components/providers/ToastManager";
@@ -10,6 +8,7 @@ import ModalManager from "@/components/providers/ModalManager";
 import PWAInstallPrompt from "@/components/pwa/PWAInstallPrompt";
 import ComparisonBar from "@/components/product/ComparisonBar";
 import ChatAssistant from "@/components/ChatAssistant";
+import ConditionalLayout from "@/components/layout/ConditionalLayout";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -87,9 +86,9 @@ export default function RootLayout({
       <body className={`${inter.variable} font-sans antialiased`}>
         <SessionProvider>
           <ReactQueryProvider>
-            <Header />
-            <main className="min-h-screen">{children}</main>
-            <Footer />
+            <ConditionalLayout>
+              {children}
+            </ConditionalLayout>
             <ToastManager />
             <ModalManager />
             <PWAInstallPrompt />

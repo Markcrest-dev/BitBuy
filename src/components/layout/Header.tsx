@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { ShoppingCartIcon, UserIcon, Bars3Icon, ArrowRightOnRectangleIcon, ChevronDownIcon, FireIcon } from '@heroicons/react/24/outline'
+import { ShoppingCartIcon, UserIcon, Bars3Icon, ChevronDownIcon, FireIcon } from '@heroicons/react/24/outline'
 import { useState, useEffect } from 'react'
 import { useCartStore } from '@/store/cartStore'
 import SearchBar from '@/components/search/SearchBar'
@@ -36,7 +36,7 @@ export default function Header() {
   ]
 
   return (
-    <header className="bg-white shadow-lg sticky top-0 z-50">
+    <header className="bg-white shadow-lg z-50">
       {/* Single Unified Header */}
       <div className="bg-gradient-to-r from-gray-900 via-amber-900 to-gray-900">
         <div className="container mx-auto px-4">
