@@ -71,10 +71,18 @@ export async function POST(request: Request) {
       console.error('Error stack:', error.stack)
     }
 
+    // Check if it's a Prisma error
+    const isPrismaError = error && typeof error === 'object' && 'code' in error
+
     return NextResponse.json(
       {
         error: 'Internal server error',
-        details: process.env.NODE_ENV === 'development' ? (error instanceof Error ? error.message : 'Unknown error') : undefined
+        details: process.env.NODE_ENV === 'development' || process.env.VERCEL_ENV === 'preview'
+          ? (error instanceof Error ? error.message : 'Unknown error')
+          : 'Please try again later',
+        errorType: error instanceof Error ? error.name : 'Unknown',
+        isPrismaError,
+        timestamp: new Date().toISOString()
       },
       { status: 500 }
     )
