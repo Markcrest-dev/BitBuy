@@ -199,17 +199,6 @@ export default function LoginPage() {
             </Link>
           </p>
 
-          {/* Test Credentials */}
-          <div className="mt-6 p-4 bg-gradient-to-br from-amber-50 to-yellow-50 border-2 border-amber-200 rounded-xl">
-            <p className="text-sm font-bold text-amber-900 mb-2 flex items-center gap-2">
-              <SparklesIcon className="w-4 h-4" />
-              Test Credentials
-            </p>
-            <div className="text-xs text-amber-800 space-y-1 font-medium">
-              <p><strong>Admin:</strong> admin@bitbuy.com / admin123</p>
-              <p><strong>User:</strong> user@bitbuy.com / user123</p>
-            </div>
-          </div>
         </div>
       </div>
 
